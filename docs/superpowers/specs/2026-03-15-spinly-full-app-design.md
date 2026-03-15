@@ -374,11 +374,12 @@ All tests in `spinly/tests/` using `frappe.tests.utils.FrappeTestCase`. Test dat
 - Monthly recalculate_all_tiers corrects drift
 
 ### Streak Logic (SK-01 – SK-06)
-- Increment on ≤7-day gap
-- Reset on >7-day gap
-- Progress text format verified
-- Double-points Bonus transaction on completion
-- First-order edge case (previous_order_date = None)
+- SK-01: Increment on ≤7-day gap
+- SK-02: Reset to 1 on >7-day gap (customer starts new streak)
+- SK-03: Progress text format verified mid-streak
+- SK-04: Double-points Bonus transaction created on streak completion; current_streak_weeks = 0
+- SK-05: Progress text = "Streak complete! Double points awarded!" on completion
+- SK-06: First-order edge case (previous_order_date = None → days_since_last = 999 → streak starts at 1)
 
 ### Promo Campaigns (PR-01 – PR-10)
 - Flash Sale: service match + wrong-service rejection

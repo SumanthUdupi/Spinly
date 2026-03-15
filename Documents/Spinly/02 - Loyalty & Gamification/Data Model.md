@@ -106,7 +106,7 @@ erDiagram
 | `tier` | Select | `Bronze` / `Silver` / `Gold` — auto-updated on every earn |
 | `last_order_date` | Date | Date of most recent order — **overwritten** on each earn |
 | `previous_order_date` | Date | Set to old `last_order_date` **before** it is overwritten — used by `check_streak()` to avoid self-comparison |
-| `current_streak_weeks` | Int | Consecutive weeks with ≥1 order. Resets to 0 on streak completion or gap. |
+| `current_streak_weeks` | Int | Consecutive weeks with ≥1 order. Set to **0** on streak completion; set to **1** on gap (the current order starts a new streak, so it is never 0 on a gap). |
 | `order_count` | Int | Total submitted orders. Used for `order_count % scratch_card_frequency` check. |
 
 > **Critical distinction:** `total_points` can go down. `lifetime_points` only ever goes up. Tier is based on `lifetime_points` — customers cannot lose their tier by spending points.

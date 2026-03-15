@@ -158,7 +158,7 @@ sequenceDiagram
     RC-->>NE: bonus = referral_bonus_points (e.g. 50)
     NE->>NA: Create Loyalty Transaction (Referral, +50 pts)
     NA-->>NE: New customer credited
-    NE->>RA: Get Loyalty Account for referrer_phone
+    NE->>RA: Get Loyalty Account for referrer_customer_name (value of customer.referred_by Link field)
     NE->>RA: Create Loyalty Transaction (Referral, +50 pts)
     RA-->>NE: Referrer credited
 ```
@@ -209,10 +209,12 @@ def issue_scratch_card(doc, method):
 
 ```python
 def expire_old_points():
-    # Find Earn transactions past their expiry that haven't been expired yet
+    # Find Earn transactions past their expiry that haven't been expired yet.
+    # has_been_expired = 0 is the idempotency guard — prevents double-expiry
+    # if the daily scheduler retries or bench restarts.
     expired_txns = frappe.get_all(
         "Loyalty Transaction",
-        filters={"transaction_type": "Earn", "expiry_date": ["<", today]},
+        filters={"transaction_type": "Earn", "expiry_date": ["<", today], "has_been_expired": 0},
         fields=["name", "loyalty_account", "points"]
     )
     for txn in expired_txns:
@@ -227,6 +229,8 @@ def expire_old_points():
         }).insert()
         account.total_points = max(0, account.total_points - txn.points)
         account.save()
+        # Mark as expired so this Earn transaction is never processed again
+        frappe.db.set_value("Loyalty Transaction", txn.name, "has_been_expired", 1)
 ```
 
 ### evaluate_streaks() — Weekly
