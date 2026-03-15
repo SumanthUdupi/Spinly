@@ -31,7 +31,7 @@ erDiagram
         string tier "Bronze/Silver/Gold"
         date last_order_date "updated on every earn"
         date previous_order_date "set to old last_order_date BEFORE overwriting"
-        int current_streak_weeks "resets to 0 when streak completes or breaks"
+        int current_streak_weeks "resets to 0 on completion; resets to 1 on gap"
         int order_count "used for every-5th scratch card"
     }
 
@@ -119,10 +119,11 @@ erDiagram
 |---|---|---|
 | `name` | Data | Auto: `LTXN-.YYYY.-.#####` |
 | `loyalty_account` | Link → Loyalty Account | The ledger this transaction belongs to |
-| `order` | Link → Laundry Order | Optional — absent for Expire transactions |
+| `order` | Link → Laundry Order | Optional — absent for Expire, Bonus, and Referral transactions |
 | `transaction_type` | Select | `Earn` / `Redeem` / `Expire` / `Bonus` / `Referral` |
 | `points` | Int | Positive for Earn/Bonus/Referral, negative for Redeem/Expire |
 | `expiry_date` | Date | Set on Earn transactions (today + `points_expiry_days`). Null on others. |
+| `has_been_expired` | Check | Default 0. Set to 1 by `expire_old_points()` after processing. Idempotency guard — prevents double-expiry on scheduler retry. |
 | `description` | Small Text | Human-readable: "Earned 45 pts on ORD-2026-00012" |
 
 ---

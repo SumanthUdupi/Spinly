@@ -322,8 +322,9 @@ check_streak(account, order):
     else:
         order.streak_progress_text = f"{streak}/{settings.streak_weeks_required} weeks — {settings.streak_weeks_required - streak} more for double points!"
 
-award_referral_bonus(new_customer, referrer_phone):
-    referrer = frappe.get_doc("Laundry Customer", {"phone": referrer_phone})
+award_referral_bonus(new_customer_doc, referrer_customer_name):
+    # referrer_customer_name is the value of customer.referred_by (a Link field — e.g. "CUST-00042")
+    referrer_account = frappe.db.get_value("Loyalty Account", {"customer": referrer_customer_name})
     referral_promo = get active Promo Campaign where campaign_type = "Referral"
     if referral_promo:
         bonus = referral_promo.referral_bonus_points
@@ -652,7 +653,7 @@ Loaded via `bench migrate` — JSON files, no code.
 |---|---|
 | Submit order | Points earned = weight × rate (or amount × rate, whichever higher) |
 | 5th order for customer | Scratch Card DocType created, WhatsApp Log entry queued |
-| 4-week streak achieved | Double points Loyalty Transaction (Bonus) created on 5th week |
+| 4-week streak achieved | Double points Loyalty Transaction (Bonus) created when streak reaches 4 (streak_weeks_required = 4) |
 | Redeem points at checkout | `loyalty_points_redeemed` set, `discount_amount` updated, Redeem transaction created |
 | Points expiry (90 days) | Daily job creates Expire transactions, decrements `total_points` |
 | Tier upgrade (Bronze→Silver) | `lifetime_points` crosses 500, tier auto-updates |
