@@ -7,7 +7,7 @@ logs/
 # Local server secrets
 server/.env
 
-# Claude Code local settings (IDE tool config — not project files)
+# IDE tool config — not project files
 .claude/
 
 # Python
