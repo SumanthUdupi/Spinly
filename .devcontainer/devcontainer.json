@@ -1,0 +1,28 @@
+{
+    "name": "Frappe Dev",
+    "image": "mcr.microsoft.com/devcontainers/python:3-3.14-trixie",
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "moby": false
+        },
+        "ghcr.io/devcontainers/features/git-lfs:1": {},
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "24"
+        }
+    },
+    "forwardPorts": [8000, 8080, 9000, 6379, 3306],
+    "portsAttributes": {
+        "8000": {
+            "label": "Frappe Web",
+            "onAutoForward": "notify",
+            "visibility": "public"
+        },
+        "9000": {
+            "label": "Socket.IO",
+            "onAutoForward": "silent"
+        }
+    },
+    "postCreateCommand": "bash /workspaces/Frappe/scripts/setup-bench.sh",
+    "postStartCommand": "bash /workspaces/Frappe/scripts/start-services.sh",
+    "remoteUser": "vscode"
+}
