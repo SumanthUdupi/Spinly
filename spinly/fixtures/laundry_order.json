@@ -23,8 +23,22 @@
     "net_amount": 180.0,
     "grand_total": 180.0,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 5, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 90.0},
-      {"doctype": "Order Item", "garment_type": "GT-09", "quantity": 5, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 90.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 5,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 90.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-09",
+        "quantity": 5,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 90.0
+      }
     ]
   },
   {
@@ -40,20 +54,41 @@
     "payment_method": "UPI",
     "docstatus": 1,
     "assigned_machine": "MAC-02",
-    "total_weight_kg": 2.1,
+    "total_weight_kg": 2.0,
     "total_items": 5,
-    "subtotal": 189.0,
+    "subtotal": 180.0,
     "tax_amount": 0,
     "tier_discount_amount": 0.0,
     "promo_discount_amount": 0.0,
     "loyalty_points_redeemed": 0,
     "discount_amount": 0.0,
-    "net_amount": 189.0,
-    "grand_total": 189.0,
+    "net_amount": 180.0,
+    "grand_total": 180.0,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 3, "weight_kg": 0.3, "unit_price": 90.0, "line_total": 81.0},
-      {"doctype": "Order Item", "garment_type": "GT-04", "quantity": 2, "weight_kg": 0.35, "unit_price": 90.0, "line_total": 63.0},
-      {"doctype": "Order Item", "garment_type": "GT-09", "quantity": 2, "weight_kg": 0.2, "unit_price": 90.0, "line_total": 45.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 3,
+        "weight_kg": 0.3,
+        "unit_price": 90.0,
+        "line_total": 81.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-04",
+        "quantity": 2,
+        "weight_kg": 0.35,
+        "unit_price": 90.0,
+        "line_total": 63.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-09",
+        "quantity": 2,
+        "weight_kg": 0.2,
+        "unit_price": 90.0,
+        "line_total": 36.0
+      }
     ]
   },
   {
@@ -80,7 +115,14 @@
     "net_amount": 240.0,
     "grand_total": 240.0,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-05", "quantity": 2, "weight_kg": 0.8, "unit_price": 150.0, "line_total": 240.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-05",
+        "quantity": 2,
+        "weight_kg": 0.8,
+        "unit_price": 150.0,
+        "line_total": 240.0
+      }
     ]
   },
   {
@@ -107,9 +149,30 @@
     "net_amount": 126.0,
     "grand_total": 126.0,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-04", "quantity": 3, "weight_kg": 0.35, "unit_price": 60.0, "line_total": 63.0},
-      {"doctype": "Order Item", "garment_type": "GT-12", "quantity": 3, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 54.0},
-      {"doctype": "Order Item", "garment_type": "GT-09", "quantity": 1, "weight_kg": 0.15, "unit_price": 60.0, "line_total": 9.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-04",
+        "quantity": 3,
+        "weight_kg": 0.35,
+        "unit_price": 60.0,
+        "line_total": 63.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-12",
+        "quantity": 3,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 54.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-09",
+        "quantity": 1,
+        "weight_kg": 0.15,
+        "unit_price": 60.0,
+        "line_total": 9.0
+      }
     ]
   },
   {
@@ -136,9 +199,30 @@
     "net_amount": 162.0,
     "grand_total": 162.0,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 3, "weight_kg": 0.3, "unit_price": 90.0, "line_total": 81.0},
-      {"doctype": "Order Item", "garment_type": "GT-10", "quantity": 2, "weight_kg": 0.4, "unit_price": 90.0, "line_total": 72.0},
-      {"doctype": "Order Item", "garment_type": "GT-09", "quantity": 1, "weight_kg": 0.1, "unit_price": 90.0, "line_total": 9.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 3,
+        "weight_kg": 0.3,
+        "unit_price": 90.0,
+        "line_total": 81.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-10",
+        "quantity": 2,
+        "weight_kg": 0.4,
+        "unit_price": 90.0,
+        "line_total": 72.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-09",
+        "quantity": 1,
+        "weight_kg": 0.1,
+        "unit_price": 90.0,
+        "line_total": 9.0
+      }
     ]
   },
   {
@@ -165,9 +249,30 @@
     "net_amount": 188.1,
     "grand_total": 188.1,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 4, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 72.0},
-      {"doctype": "Order Item", "garment_type": "GT-09", "quantity": 4, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 72.0},
-      {"doctype": "Order Item", "garment_type": "GT-12", "quantity": 3, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 54.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 4,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 72.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-09",
+        "quantity": 4,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 72.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-12",
+        "quantity": 3,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 54.0
+      }
     ]
   },
   {
@@ -194,9 +299,30 @@
     "net_amount": 235.12,
     "grand_total": 235.12,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 4, "weight_kg": 0.3, "unit_price": 90.0, "line_total": 108.0},
-      {"doctype": "Order Item", "garment_type": "GT-02", "quantity": 3, "weight_kg": 0.4, "unit_price": 90.0, "line_total": 108.0},
-      {"doctype": "Order Item", "garment_type": "GT-09", "quantity": 1, "weight_kg": 0.35, "unit_price": 90.0, "line_total": 31.5}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 4,
+        "weight_kg": 0.3,
+        "unit_price": 90.0,
+        "line_total": 108.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-02",
+        "quantity": 3,
+        "weight_kg": 0.4,
+        "unit_price": 90.0,
+        "line_total": 108.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-09",
+        "quantity": 1,
+        "weight_kg": 0.35,
+        "unit_price": 90.0,
+        "line_total": 31.5
+      }
     ]
   },
   {
@@ -223,8 +349,22 @@
     "net_amount": 342.0,
     "grand_total": 342.0,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-06", "quantity": 2, "weight_kg": 0.7, "unit_price": 150.0, "line_total": 210.0},
-      {"doctype": "Order Item", "garment_type": "GT-03", "quantity": 2, "weight_kg": 0.5, "unit_price": 150.0, "line_total": 150.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-06",
+        "quantity": 2,
+        "weight_kg": 0.7,
+        "unit_price": 150.0,
+        "line_total": 210.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-03",
+        "quantity": 2,
+        "weight_kg": 0.5,
+        "unit_price": 150.0,
+        "line_total": 150.0
+      }
     ]
   },
   {
@@ -251,8 +391,22 @@
     "net_amount": 205.2,
     "grand_total": 205.2,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 6, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 108.0},
-      {"doctype": "Order Item", "garment_type": "GT-09", "quantity": 6, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 108.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 6,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 108.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-09",
+        "quantity": 6,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 108.0
+      }
     ]
   },
   {
@@ -279,9 +433,30 @@
     "net_amount": 239.4,
     "grand_total": 239.4,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-02", "quantity": 4, "weight_kg": 0.4, "unit_price": 90.0, "line_total": 144.0},
-      {"doctype": "Order Item", "garment_type": "GT-04", "quantity": 3, "weight_kg": 0.35, "unit_price": 90.0, "line_total": 94.5},
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 1, "weight_kg": 0.3, "unit_price": 90.0, "line_total": 13.5}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-02",
+        "quantity": 4,
+        "weight_kg": 0.4,
+        "unit_price": 90.0,
+        "line_total": 144.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-04",
+        "quantity": 3,
+        "weight_kg": 0.35,
+        "unit_price": 90.0,
+        "line_total": 94.5
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 1,
+        "weight_kg": 0.3,
+        "unit_price": 90.0,
+        "line_total": 13.5
+      }
     ]
   },
   {
@@ -308,10 +483,38 @@
     "net_amount": 405.0,
     "grand_total": 405.0,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-05", "quantity": 2, "weight_kg": 0.8, "unit_price": 150.0, "line_total": 240.0},
-      {"doctype": "Order Item", "garment_type": "GT-06", "quantity": 1, "weight_kg": 0.7, "unit_price": 150.0, "line_total": 105.0},
-      {"doctype": "Order Item", "garment_type": "GT-03", "quantity": 1, "weight_kg": 0.5, "unit_price": 150.0, "line_total": 75.0},
-      {"doctype": "Order Item", "garment_type": "GT-10", "quantity": 1, "weight_kg": 0.2, "unit_price": 150.0, "line_total": 30.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-05",
+        "quantity": 2,
+        "weight_kg": 0.8,
+        "unit_price": 150.0,
+        "line_total": 240.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-06",
+        "quantity": 1,
+        "weight_kg": 0.7,
+        "unit_price": 150.0,
+        "line_total": 105.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-03",
+        "quantity": 1,
+        "weight_kg": 0.5,
+        "unit_price": 150.0,
+        "line_total": 75.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-10",
+        "quantity": 1,
+        "weight_kg": 0.2,
+        "unit_price": 150.0,
+        "line_total": 30.0
+      }
     ]
   },
   {
@@ -338,10 +541,38 @@
     "net_amount": 216.0,
     "grand_total": 216.0,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 5, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 90.0},
-      {"doctype": "Order Item", "garment_type": "GT-09", "quantity": 5, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 90.0},
-      {"doctype": "Order Item", "garment_type": "GT-04", "quantity": 3, "weight_kg": 0.35, "unit_price": 60.0, "line_total": 63.0},
-      {"doctype": "Order Item", "garment_type": "GT-12", "quantity": 2, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 27.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 5,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 90.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-09",
+        "quantity": 5,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 90.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-04",
+        "quantity": 3,
+        "weight_kg": 0.35,
+        "unit_price": 60.0,
+        "line_total": 63.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-12",
+        "quantity": 2,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 27.0
+      }
     ]
   },
   {
@@ -368,10 +599,38 @@
     "net_amount": 259.2,
     "grand_total": 259.2,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 4, "weight_kg": 0.3, "unit_price": 90.0, "line_total": 108.0},
-      {"doctype": "Order Item", "garment_type": "GT-02", "quantity": 3, "weight_kg": 0.4, "unit_price": 90.0, "line_total": 108.0},
-      {"doctype": "Order Item", "garment_type": "GT-10", "quantity": 2, "weight_kg": 0.4, "unit_price": 90.0, "line_total": 72.0},
-      {"doctype": "Order Item", "garment_type": "GT-04", "quantity": 1, "weight_kg": 0.35, "unit_price": 90.0, "line_total": 36.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 4,
+        "weight_kg": 0.3,
+        "unit_price": 90.0,
+        "line_total": 108.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-02",
+        "quantity": 3,
+        "weight_kg": 0.4,
+        "unit_price": 90.0,
+        "line_total": 108.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-10",
+        "quantity": 2,
+        "weight_kg": 0.4,
+        "unit_price": 90.0,
+        "line_total": 72.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-04",
+        "quantity": 1,
+        "weight_kg": 0.35,
+        "unit_price": 90.0,
+        "line_total": 36.0
+      }
     ]
   },
   {
@@ -398,9 +657,30 @@
     "net_amount": 300.0,
     "grand_total": 300.0,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-05", "quantity": 1, "weight_kg": 0.8, "unit_price": 150.0, "line_total": 120.0},
-      {"doctype": "Order Item", "garment_type": "GT-06", "quantity": 1, "weight_kg": 0.7, "unit_price": 150.0, "line_total": 105.0},
-      {"doctype": "Order Item", "garment_type": "GT-03", "quantity": 1, "weight_kg": 0.5, "unit_price": 150.0, "line_total": 75.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-05",
+        "quantity": 1,
+        "weight_kg": 0.8,
+        "unit_price": 150.0,
+        "line_total": 120.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-06",
+        "quantity": 1,
+        "weight_kg": 0.7,
+        "unit_price": 150.0,
+        "line_total": 105.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-03",
+        "quantity": 1,
+        "weight_kg": 0.5,
+        "unit_price": 150.0,
+        "line_total": 75.0
+      }
     ]
   },
   {
@@ -427,8 +707,22 @@
     "net_amount": 180.0,
     "grand_total": 180.0,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 5, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 90.0},
-      {"doctype": "Order Item", "garment_type": "GT-12", "quantity": 5, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 90.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 5,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 90.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-12",
+        "quantity": 5,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 90.0
+      }
     ]
   },
   {
@@ -455,9 +749,30 @@
     "net_amount": 162.0,
     "grand_total": 162.0,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-04", "quantity": 3, "weight_kg": 0.35, "unit_price": 90.0, "line_total": 94.5},
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 2, "weight_kg": 0.3, "unit_price": 90.0, "line_total": 54.0},
-      {"doctype": "Order Item", "garment_type": "GT-09", "quantity": 1, "weight_kg": 0.15, "unit_price": 90.0, "line_total": 13.5}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-04",
+        "quantity": 3,
+        "weight_kg": 0.35,
+        "unit_price": 90.0,
+        "line_total": 94.5
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 2,
+        "weight_kg": 0.3,
+        "unit_price": 90.0,
+        "line_total": 54.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-09",
+        "quantity": 1,
+        "weight_kg": 0.15,
+        "unit_price": 90.0,
+        "line_total": 13.5
+      }
     ]
   },
   {
@@ -484,9 +799,30 @@
     "net_amount": 234.4,
     "grand_total": 234.4,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 5, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 90.0},
-      {"doctype": "Order Item", "garment_type": "GT-09", "quantity": 5, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 90.0},
-      {"doctype": "Order Item", "garment_type": "GT-04", "quantity": 4, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 72.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 5,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 90.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-09",
+        "quantity": 5,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 90.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-04",
+        "quantity": 4,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 72.0
+      }
     ]
   },
   {
@@ -513,10 +849,38 @@
     "net_amount": 265.4,
     "grand_total": 265.4,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 4, "weight_kg": 0.3, "unit_price": 90.0, "line_total": 108.0},
-      {"doctype": "Order Item", "garment_type": "GT-02", "quantity": 3, "weight_kg": 0.4, "unit_price": 90.0, "line_total": 108.0},
-      {"doctype": "Order Item", "garment_type": "GT-04", "quantity": 2, "weight_kg": 0.35, "unit_price": 90.0, "line_total": 63.0},
-      {"doctype": "Order Item", "garment_type": "GT-09", "quantity": 1, "weight_kg": 0.3, "unit_price": 90.0, "line_total": 27.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 4,
+        "weight_kg": 0.3,
+        "unit_price": 90.0,
+        "line_total": 108.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-02",
+        "quantity": 3,
+        "weight_kg": 0.4,
+        "unit_price": 90.0,
+        "line_total": 108.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-04",
+        "quantity": 2,
+        "weight_kg": 0.35,
+        "unit_price": 90.0,
+        "line_total": 63.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-09",
+        "quantity": 1,
+        "weight_kg": 0.3,
+        "unit_price": 90.0,
+        "line_total": 27.0
+      }
     ]
   },
   {
@@ -543,8 +907,22 @@
     "net_amount": 336.0,
     "grand_total": 336.0,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-05", "quantity": 2, "weight_kg": 0.8, "unit_price": 150.0, "line_total": 240.0},
-      {"doctype": "Order Item", "garment_type": "GT-06", "quantity": 2, "weight_kg": 0.7, "unit_price": 150.0, "line_total": 180.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-05",
+        "quantity": 2,
+        "weight_kg": 0.8,
+        "unit_price": 150.0,
+        "line_total": 240.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-06",
+        "quantity": 2,
+        "weight_kg": 0.7,
+        "unit_price": 150.0,
+        "line_total": 180.0
+      }
     ]
   },
   {
@@ -571,10 +949,38 @@
     "net_amount": 218.7,
     "grand_total": 218.7,
     "items": [
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 5, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 90.0},
-      {"doctype": "Order Item", "garment_type": "GT-09", "quantity": 4, "weight_kg": 0.3, "unit_price": 60.0, "line_total": 72.0},
-      {"doctype": "Order Item", "garment_type": "GT-04", "quantity": 3, "weight_kg": 0.35, "unit_price": 60.0, "line_total": 63.0},
-      {"doctype": "Order Item", "garment_type": "GT-12", "quantity": 3, "weight_kg": 0.2, "unit_price": 60.0, "line_total": 18.0}
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-01",
+        "quantity": 5,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 90.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-09",
+        "quantity": 4,
+        "weight_kg": 0.3,
+        "unit_price": 60.0,
+        "line_total": 72.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-04",
+        "quantity": 3,
+        "weight_kg": 0.35,
+        "unit_price": 60.0,
+        "line_total": 63.0
+      },
+      {
+        "doctype": "Order Item",
+        "garment_type": "GT-12",
+        "quantity": 3,
+        "weight_kg": 0.2,
+        "unit_price": 60.0,
+        "line_total": 18.0
+      }
     ]
   },
   {

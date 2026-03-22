@@ -91,9 +91,11 @@ const SpinlyPOS = (() => {
 		document.getElementById("sp-select-customer-btn").addEventListener("click", _proceedWithCustomer);
 		document.getElementById("sp-add-new-btn").addEventListener("click", _showNewCustomerForm);
 		document.getElementById("sp-save-customer-btn").addEventListener("click", _saveNewCustomer);
-		// Keyboard support for hardware keyboards
+		// Keyboard support for hardware keyboards (ignored when focus is in a text input)
 		document.addEventListener("keydown", e => {
 			if (!document.getElementById("sp-screen-1").classList.contains("active")) return;
+			const tag = document.activeElement?.tagName;
+			if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
 			if (e.key >= "0" && e.key <= "9") { e.preventDefault(); _appendDigit(e.key); }
 			else if (e.key === "Backspace") { e.preventDefault(); _backspace(); }
 			else if (e.key === "Escape") { e.preventDefault(); _clearPhone(); }

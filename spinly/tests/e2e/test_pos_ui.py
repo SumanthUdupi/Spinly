@@ -738,9 +738,18 @@ def test_color_code_only_hex_applied(page: Page):
     """Alert tag color_code values are restricted to hex format only."""
     navigate_to_pos(page)
 
+    # Navigate to screen 2 where .sp-tag-btn are rendered
+    type_phone(page, "9876543210")
+    page.wait_for_timeout(2000)
+    select_btn = page.locator("#sp-select-customer-btn")
+    if not select_btn.is_visible():
+        pytest.skip("Skipping: customer fixture not loaded")
+    select_btn.click()
+    page.wait_for_timeout(800)
+
     # This tests the _sanitizeColorCode function indirectly:
     # Valid hex colors in --tag-color custom property should be #xxxxxx format
-    tag_btns = page.locator(".sp-tag-btn")
+    tag_btns = page.locator("#sp-tag-row .sp-tag-btn")
     count = tag_btns.count()
     if count == 0:
         pytest.skip("No alert tags to check")
@@ -750,5 +759,5 @@ def test_color_code_only_hex_applied(page: Page):
             "el => el.style.getPropertyValue('--tag-color').trim()"
         )
         if tag_color:
-            assert re.match(r'^#[0-9A-Fa-f]{3,8}$', tag_color), \
-                f"Tag {i} --tag-color must be hex only, got: {tag_color!r}"
+            assert re.match(r'^#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$', tag_color), \
+                f"Tag {i} --tag-color must be valid CSS hex only, got: {tag_color!r}"
