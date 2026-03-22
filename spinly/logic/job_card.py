@@ -18,6 +18,7 @@ def on_submit(doc, method=None):
     frappe.db.set_value("Laundry Order", doc.laundry_order, "actual_delivery_date", now_datetime())
     if doc.assigned_machine:
         _update_machine_load(doc, add=False)
+    _maybe_issue_scratch_card(doc)   # moved here from on_workflow_action
 
 
 def on_workflow_action(doc, method=None):
@@ -38,7 +39,6 @@ def on_workflow_action(doc, method=None):
     elif state == "Ready":
         _update_order_status(doc, "Ready")
         _send_pickup_reminder(doc)
-        _maybe_issue_scratch_card(doc)
 
 
 # ── private helpers ──────────────────────────────────────────────────────────

@@ -120,6 +120,12 @@ def maybe_issue_scratch_card(order):
     sc.issued_on = today()
     sc.expiry_date = add_days(today(), 30)
     sc.insert(ignore_permissions=True)
+    # Notify customer via WhatsApp
+    try:
+        from spinly.integrations.whatsapp_handler import send_scratch_card_message
+        send_scratch_card_message(order, sc)
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Scratch Card WA Dispatch Failed")
 
 
 def expire_points():

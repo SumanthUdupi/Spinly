@@ -45,6 +45,7 @@ doc_events = {
             "spinly.logic.order.on_submit",
             "spinly.logic.loyalty.credit_order_points_on_submit",
             "spinly.integrations.whatsapp_handler.send_order_confirmation",
+            "spinly.integrations.whatsapp_handler.send_vip_thank_you",
         ],
         "on_cancel": "spinly.logic.order.on_cancel",
         "on_update": "spinly.integrations.whatsapp_handler.on_payment_confirmed",

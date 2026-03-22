@@ -94,27 +94,102 @@ def send_pickup_reminders():
 
 
 def send_win_back_messages():
-    """Daily: message customers inactive for win_back_after_days."""
+    """Daily: message customers inactive for win_back_after_days based on Loyalty Account."""
     settings = frappe.get_cached_doc("Spinly Settings")
     days = settings.win_back_after_days or 30
     cutoff = add_days(today(), -days)
 
     inactive = frappe.db.sql(
-        """SELECT DISTINCT customer FROM `tabLaundry Order`
-           GROUP BY customer
-           HAVING MAX(DATE(order_date)) < %s""",
+        """SELECT la.customer, lc.full_name, lc.phone, lc.language_preference
+           FROM `tabLoyalty Account` la
+           JOIN `tabLaundry Customer` lc ON lc.name = la.customer
+           WHERE la.is_active = 1
+             AND la.last_order_date IS NOT NULL
+             AND la.last_order_date < %s""",
         cutoff,
         as_dict=True,
     )
     for row in inactive:
-        customer = frappe.get_doc("Laundry Customer", row.customer)
+        try:
+            class _C:
+                pass
+            cust = _C()
+            cust.name = row.customer
+            cust.phone = row.phone
+            cust.language_preference = row.language_preference
+            _enqueue_message(
+                customer=cust,
+                message_type="Win-Back",
+                context={},
+                reference_doctype="Laundry Customer",
+                reference_name=row.customer,
+            )
+        except Exception:
+            frappe.log_error(frappe.get_traceback(), f"Win-Back WhatsApp Failed: {row.customer}")
+
+
+def send_scratch_card_message(order, scratch_card):
+    """Send scratch card notification to customer."""
+    try:
+        customer = frappe.get_doc("Laundry Customer", order.customer)
         _enqueue_message(
             customer=customer,
-            message_type="Win-Back",
-            context={},
-            reference_doctype="Laundry Customer",
-            reference_name=row.customer,
+            message_type="Scratch Card",
+            context={"order": order.name, "prize_type": scratch_card.prize_type},
+            reference_doctype="Scratch Card",
+            reference_name=scratch_card.name,
         )
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Scratch Card WhatsApp Failed")
+
+
+def send_vip_thank_you(doc, method=None):
+    """Hook: Laundry Order on_submit — send VIP thank you to Silver/Gold customers."""
+    try:
+        customer = frappe.get_doc("Laundry Customer", doc.customer)
+        tier = frappe.db.get_value("Loyalty Account", {"customer": doc.customer}, "tier") or "Bronze"
+        if tier not in ("Silver", "Gold"):
+            return
+        _enqueue_message(
+            customer=customer,
+            message_type="VIP Thank You",
+            context={"customer_name": customer.full_name, "tier": tier},
+            reference_doctype="Laundry Order",
+            reference_name=doc.name,
+        )
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "VIP Thank You WhatsApp Failed")
+
+
+def send_birthday_messages():
+    """Daily: send birthday greeting to customers whose DOB month+day matches today."""
+    from frappe.utils import getdate
+    today_date = getdate(today())
+    # Find customers with birthday today (match month and day, ignore year)
+    customers = frappe.db.sql(
+        """SELECT name, full_name, phone, language_preference
+           FROM `tabLaundry Customer`
+           WHERE MONTH(dob) = %s AND DAY(dob) = %s""",
+        (today_date.month, today_date.day),
+        as_dict=True,
+    )
+    for c in customers:
+        try:
+            class _C:
+                pass
+            cust = _C()
+            cust.name = c.name
+            cust.phone = c.phone
+            cust.language_preference = c.language_preference
+            _enqueue_message(
+                customer=cust,
+                message_type="Birthday Greeting",
+                context={"customer_name": c.full_name},
+                reference_doctype="Laundry Customer",
+                reference_name=c.name,
+            )
+        except Exception:
+            frappe.log_error(frappe.get_traceback(), f"Birthday WhatsApp Failed: {c.name}")
 
 
 # ── private helpers ──────────────────────────────────────────────────────────
