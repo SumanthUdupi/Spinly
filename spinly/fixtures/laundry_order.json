@@ -281,7 +281,7 @@
     "items": [
       {"doctype": "Order Item", "garment_type": "GT-02", "quantity": 4, "weight_kg": 0.4, "unit_price": 90.0, "line_total": 144.0},
       {"doctype": "Order Item", "garment_type": "GT-04", "quantity": 3, "weight_kg": 0.35, "unit_price": 90.0, "line_total": 94.5},
-      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 0, "weight_kg": 0.3, "unit_price": 90.0, "line_total": 13.5}
+      {"doctype": "Order Item", "garment_type": "GT-01", "quantity": 1, "weight_kg": 0.3, "unit_price": 90.0, "line_total": 13.5}
     ]
   },
   {
