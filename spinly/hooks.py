@@ -29,6 +29,7 @@ fixtures = [
     "Laundry Customer",
     "Loyalty Account",
     "Loyalty Transaction",  # must come after Loyalty Account (FK dependency)
+    "Laundry Order",  # demo data — comment out before production deploy
 ]
 
 # Authentication — redirect staff to POS on login
