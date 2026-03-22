@@ -474,7 +474,7 @@
 .sp-optional {
   font-weight: 400;
   letter-spacing: 0;
-  color: var(--sp-border-2);
+  color: var(--sp-text-2);
   text-transform: none;
   font-size: 11px;
 }
@@ -505,6 +505,10 @@
   user-select: none;
 }
 .sp-garment-btn:active { transform: scale(0.96); }
+.sp-garment-btn:focus-visible {
+  outline: 2px solid var(--sp-cyan);
+  outline-offset: 2px;
+}
 .sp-garment-btn.selected {
   border-color: var(--sp-cyan);
   background: var(--sp-cyan-dim);
@@ -558,7 +562,7 @@
   font-size: 18px;
   font-weight: 700;
   width: 32px;
-  height: 32px;
+  min-height: 44px;
   min-width: 32px;
   display: flex;
   align-items: center;
@@ -567,6 +571,10 @@
   touch-action: manipulation;
   transition: background 100ms ease;
   user-select: none;
+}
+.sp-qty-btn:focus-visible {
+  outline: 2px solid var(--sp-cyan);
+  outline-offset: 2px;
 }
 .sp-qty-btn:active { background: var(--sp-cyan); color: var(--sp-bg); }
 .sp-qty-num {
@@ -613,6 +621,10 @@
   background: var(--sp-cyan-dim);
   box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.15);
 }
+.sp-service-btn:focus-visible {
+  outline: 2px solid var(--sp-cyan);
+  outline-offset: 2px;
+}
 .sp-service-name {
   font-size: 13px;
   font-weight: 700;
@@ -638,13 +650,17 @@
   font-size: 13px;
   font-weight: 600;
   padding: 8px 14px;
-  min-height: 36px;
+  min-height: 44px;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   transition: border-color 150ms, background 150ms;
   user-select: none;
 }
 .sp-tag-btn.selected { color: #fff; }
+.sp-tag-btn:focus-visible {
+  outline: 2px solid var(--sp-cyan);
+  outline-offset: 2px;
+}
 
 /* ── Order Footer ───────────────────────────────────────────────── */
 .sp-order-footer {
@@ -809,6 +825,10 @@
   background: var(--sp-green-dim);
   box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.15);
   color: var(--sp-green);
+}
+.sp-payment-btn:focus-visible {
+  outline: 2px solid var(--sp-cyan);
+  outline-offset: 2px;
 }
 
 /* ── Screen 4 — Job Card ────────────────────────────────────────── */
@@ -986,6 +1006,29 @@
   0%   { background: var(--sp-green); }
   40%  { background: #16a34a; }
   100% { background: var(--sp-green); }
+}
+
+/* ── Order helper text (shown when REVIEW ORDER is disabled) ────── */
+.sp-order-helper {
+  font-size: 12px;
+  color: var(--sp-muted);
+  text-align: center;
+  padding: 0 0 4px;
+  transition: opacity 150ms ease;
+}
+#sp-review-btn:not([disabled]) ~ .sp-order-helper { display: none; }
+
+/* ── Screen-reader-only ─────────────────────────────────────────── */
+.sp-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ── Tablet layout ──────────────────────────────────────────────── */

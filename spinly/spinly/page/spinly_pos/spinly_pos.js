@@ -73,6 +73,14 @@ const SpinlyPOS = (() => {
 		});
 	}
 
+	// ── Utilities (defined before use) ───────────────────────────────────────
+	// SEC-08: Only allow valid hex color codes to prevent CSS injection
+	function _sanitizeColorCode(code) {
+		if (!code) return null;
+		const t = String(code).trim();
+		return /^#[0-9A-Fa-f]{3,8}$/.test(t) ? t : null;
+	}
+
 	// ── Screen 1 — Customer Search ────────────────────────────────────────────
 	function _bindKeypad() {
 		document.querySelectorAll(".sp-key[data-digit]").forEach(btn => {
@@ -83,6 +91,13 @@ const SpinlyPOS = (() => {
 		document.getElementById("sp-select-customer-btn").addEventListener("click", _proceedWithCustomer);
 		document.getElementById("sp-add-new-btn").addEventListener("click", _showNewCustomerForm);
 		document.getElementById("sp-save-customer-btn").addEventListener("click", _saveNewCustomer);
+		// Keyboard support for hardware keyboards
+		document.addEventListener("keydown", e => {
+			if (!document.getElementById("sp-screen-1").classList.contains("active")) return;
+			if (e.key >= "0" && e.key <= "9") { e.preventDefault(); _appendDigit(e.key); }
+			else if (e.key === "Backspace") { e.preventDefault(); _backspace(); }
+			else if (e.key === "Escape") { e.preventDefault(); _clearPhone(); }
+		});
 	}
 
 	function _appendDigit(d) {
@@ -197,9 +212,9 @@ const SpinlyPOS = (() => {
 				<span class="sp-garment-emoji">${g.icon_emoji || "👕"}</span>
 				<span class="sp-garment-name">${g.garment_name}</span>
 				<div class="sp-garment-controls">
-					<button class="sp-qty-btn" data-action="dec">−</button>
-					<span class="sp-qty-num" id="qty-${g.name}">0</span>
-					<button class="sp-qty-btn" data-action="inc">+</button>
+					<button class="sp-qty-btn" data-action="dec" aria-label="Decrease ${frappe.utils.escape_html(g.garment_name)} quantity">−</button>
+					<span class="sp-qty-num" id="qty-${g.name}" aria-live="polite" aria-label="${frappe.utils.escape_html(g.garment_name)} quantity">0</span>
+					<button class="sp-qty-btn" data-action="inc" aria-label="Increase ${frappe.utils.escape_html(g.garment_name)} quantity">+</button>
 				</div>`;
 			btn.querySelector("[data-action='inc']").addEventListener("click", e => {
 				e.stopPropagation(); _adjustQty(g, 1);
@@ -261,17 +276,19 @@ const SpinlyPOS = (() => {
 			btn.className = "sp-tag-btn";
 			btn.dataset.name = tag.name;
 			btn.textContent = `${tag.icon_emoji || ""} ${tag.tag_name}`.trim();
-			btn.style.setProperty("--tag-color", tag.color_code || "#ef4444");
+			const tagColor = _sanitizeColorCode(tag.color_code) || "#ef4444";
+			btn.style.setProperty("--tag-color", tagColor);
 			btn.addEventListener("click", () => {
 				if (state.alert_tags.has(tag.name)) {
 					state.alert_tags.delete(tag.name);
 					btn.classList.remove("selected");
 					btn.style.background = "";
+					btn.style.borderColor = "";
 				} else {
 					state.alert_tags.add(tag.name);
 					btn.classList.add("selected");
-					btn.style.background = (tag.color_code || "#ef4444") + "33";
-					btn.style.borderColor = tag.color_code || "#ef4444";
+					btn.style.background = tagColor + "33";
+					btn.style.borderColor = tagColor;
 				}
 			});
 			row.appendChild(btn);
@@ -308,7 +325,10 @@ const SpinlyPOS = (() => {
 		document.getElementById("sp-weight-display").textContent = `${totalWeight.toFixed(2)} kg`;
 		document.getElementById("sp-price-display").textContent = `${sym}${totalPrice.toFixed(2)}`;
 		const hasItems = Object.keys(state.items).length > 0;
-		document.getElementById("sp-review-btn").disabled = !hasItems;
+		const reviewBtn = document.getElementById("sp-review-btn");
+		reviewBtn.disabled = !hasItems;
+		const helper = document.getElementById("sp-review-helper");
+		if (helper) helper.style.display = hasItems ? "none" : "";
 	}
 
 	function _bindScreen2() {
@@ -368,9 +388,10 @@ const SpinlyPOS = (() => {
 			if (!tag) return;
 			const span = document.createElement("span");
 			span.className = "sp-confirm-tag";
-			span.style.background = (tag.color_code || "#ef4444") + "33";
-			span.style.border = `2px solid ${tag.color_code || "#ef4444"}`;
-			span.style.color = tag.color_code || "#ef4444";
+			const tagColor = _sanitizeColorCode(tag.color_code) || "#ef4444";
+			span.style.background = tagColor + "33";
+			span.style.border = `2px solid ${tagColor}`;
+			span.style.color = tagColor;
 			span.textContent = `${tag.icon_emoji || "⚠️"} ${tag.tag_name}`;
 			tagsEl.appendChild(span);
 		});
@@ -423,6 +444,8 @@ const SpinlyPOS = (() => {
 
 	function _submitOrder() {
 		if (!state.customer) return;
+		const confirmBtn = document.getElementById("sp-confirm-btn");
+		if (confirmBtn) confirmBtn.disabled = true;
 		_spin(true);
 		const items = Object.values(state.items);
 		frappe.call({
@@ -438,6 +461,7 @@ const SpinlyPOS = (() => {
 			},
 			callback(r) {
 				_spin(false);
+				if (confirmBtn) confirmBtn.disabled = false;
 				if (r.message) {
 					const result = r.message;
 					frappe.show_alert({ message: `Order ${result.order} created!`, indicator: "green" });
@@ -461,7 +485,10 @@ const SpinlyPOS = (() => {
 					}
 				}
 			},
-			error() { _spin(false); }
+			error() {
+				_spin(false);
+				if (confirmBtn) confirmBtn.disabled = false;
+			}
 		});
 	}
 
@@ -498,9 +525,10 @@ const SpinlyPOS = (() => {
 		(jc.alert_tags || []).forEach(tag => {
 			const span = document.createElement("span");
 			span.className = "sp-confirm-tag";
-			span.style.background = (tag.color_code || "#ef4444") + "33";
-			span.style.border = `2px solid ${tag.color_code || "#ef4444"}`;
-			span.style.color = tag.color_code || "#ef4444";
+			const tagColor = _sanitizeColorCode(tag.color_code) || "#ef4444";
+			span.style.background = tagColor + "33";
+			span.style.border = `2px solid ${tagColor}`;
+			span.style.color = tagColor;
 			span.textContent = `${tag.icon_emoji || "⚠️"} ${tag.tag_name}`;
 			tagsEl.appendChild(span);
 		});
@@ -532,7 +560,7 @@ const SpinlyPOS = (() => {
 			const label = document.createElement("div");
 			label.className = "sp-wf-label";
 			label.textContent = step;
-			if (i < currentIdx) { dot.classList.add("done"); label.classList.add("done"); }
+			if (i < currentIdx) { stepEl.classList.add("done"); dot.classList.add("done"); label.classList.add("done"); }
 			else if (i === currentIdx) { dot.classList.add("active"); label.classList.add("active"); }
 			stepEl.appendChild(dot);
 			stepEl.appendChild(label);
