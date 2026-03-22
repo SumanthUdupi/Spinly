@@ -5,8 +5,23 @@
   "currency_symbol": "₹",
   "tax_rate_pct": 0,
   "late_fee_per_day": 0,
-  "loyalty_points_per_rupee": 1,
   "scratch_card_trigger_orders": 5,
-  "win_back_after_days": 30
+  "win_back_after_days": 30,
+  "default_language": "en",
+  "shift_start": "08:00:00",
+  "shift_duration_hrs": 10,
+  "upi_id": "",
+  "points_per_kg": 5,
+  "points_per_currency_unit": 1,
+  "points_expiry_days": 90,
+  "redemption_pts_per_rupee": 10,
+  "streak_weeks_required": 4,
+  "tier_silver_pts": 500,
+  "tier_gold_pts": 2000,
+  "tier_silver_discount_pct": 5,
+  "tier_gold_discount_pct": 10,
+  "whatsapp_api_url": "",
+  "whatsapp_api_key": "",
+  "low_stock_alert_email": ""
  }
 ]

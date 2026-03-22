@@ -58,5 +58,155 @@
   "is_active": 1,
   "template_body": "Thank you, {{customer_name}}! As a valued {{tier}} member, your clothes receive our premium care. See you soon at Spinly!",
   "placeholder_description": "{{customer_name}} = customer name, {{tier}} = loyalty tier"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-007",
+  "template_name": "Order Confirmation - Hindi",
+  "message_type": "Order Confirmation",
+  "language": "hi",
+  "is_active": 1,
+  "template_body": "नमस्ते! आपका लॉन्ड्री ऑर्डर {{lot_number}} प्राप्त हुआ। अनुमानित तैयार समय: {{eta}}। कुल राशि: ₹{{total_amount}}। Spinly चुनने के लिए धन्यवाद!",
+  "placeholder_description": "{{lot_number}} = lot number, {{eta}} = ETA, {{total_amount}} = total"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-008",
+  "template_name": "Order Confirmation - Marathi",
+  "message_type": "Order Confirmation",
+  "language": "mr",
+  "is_active": 1,
+  "template_body": "नमस्कार! तुमचा लॉन्ड्री ऑर्डर {{lot_number}} मिळाला. अपेक्षित तयार वेळ: {{eta}}. एकूण रक्कम: ₹{{total_amount}}. Spinly निवडल्याबद्दल धन्यवाद!",
+  "placeholder_description": "{{lot_number}} = lot number, {{eta}} = ETA, {{total_amount}} = total"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-009",
+  "template_name": "Pickup Reminder - Hindi",
+  "message_type": "Pickup Reminder",
+  "language": "hi",
+  "is_active": 1,
+  "template_body": "नमस्ते! आपका लॉन्ड्री ऑर्डर {{order}} तैयार है। कृपया जल्द से जल्द Spinly से लेने आएं।",
+  "placeholder_description": "{{order}} = order name"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-010",
+  "template_name": "Pickup Reminder - Marathi",
+  "message_type": "Pickup Reminder",
+  "language": "mr",
+  "is_active": 1,
+  "template_body": "नमस्कार! तुमचा लॉन्ड्री ऑर्डर {{order}} तयार आहे. कृपया लवकरात लवकर Spinly मधून घ्या.",
+  "placeholder_description": "{{order}} = order name"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-011",
+  "template_name": "Payment Thanks - Hindi",
+  "message_type": "Payment Thanks",
+  "language": "hi",
+  "is_active": 1,
+  "template_body": "ऑर्डर {{order}} के लिए ₹{{grand_total}} का भुगतान प्राप्त हुआ। आपका व्यवसाय हमारे लिए महत्वपूर्ण है। अगली बार फिर आएं!",
+  "placeholder_description": "{{order}} = order name, {{grand_total}} = amount"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-012",
+  "template_name": "Payment Thanks - Marathi",
+  "message_type": "Payment Thanks",
+  "language": "mr",
+  "is_active": 1,
+  "template_body": "ऑर्डर {{order}} साठी ₹{{grand_total}} प्राप्त झाले. तुमचा व्यवसाय आमच्यासाठी महत्त्वाचा आहे. पुन्हा या!",
+  "placeholder_description": "{{order}} = order name, {{grand_total}} = amount"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-013",
+  "template_name": "Win-Back - Hindi",
+  "message_type": "Win-Back",
+  "language": "hi",
+  "is_active": 1,
+  "template_body": "हम आपको Spinly में याद कर रहे हैं! काफी समय हो गया है। वापस आएं और ताज़ी लॉन्ड्री सेवा का आनंद लें। हम आपकी प्रतीक्षा कर रहे हैं!",
+  "placeholder_description": "No placeholders"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-014",
+  "template_name": "Win-Back - Marathi",
+  "message_type": "Win-Back",
+  "language": "mr",
+  "is_active": 1,
+  "template_body": "आम्हाला Spinly मध्ये तुमची आठवण येते! बराच वेळ झाला. परत या आणि आमची ताजी लॉन्ड्री सेवा अनुभवा.",
+  "placeholder_description": "No placeholders"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-015",
+  "template_name": "Scratch Card - Hindi",
+  "message_type": "Scratch Card",
+  "language": "hi",
+  "is_active": 1,
+  "template_body": "बधाई हो! आपने ऑर्डर {{order}} के लिए Spinly स्क्रैच कार्ड जीता है! अपना पुरस्कार जानने के लिए स्टोर पर आएं।",
+  "placeholder_description": "{{order}} = order name"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-016",
+  "template_name": "Scratch Card - Marathi",
+  "message_type": "Scratch Card",
+  "language": "mr",
+  "is_active": 1,
+  "template_body": "अभिनंदन! तुम्ही ऑर्डर {{order}} साठी Spinly स्क्रॅच कार्ड जिंकले आहे! बक्षीस जाणण्यासाठी स्टोरवर या.",
+  "placeholder_description": "{{order}} = order name"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-017",
+  "template_name": "VIP Thank You - Hindi",
+  "message_type": "VIP Thank You",
+  "language": "hi",
+  "is_active": 1,
+  "template_body": "धन्यवाद, {{customer_name}}! {{tier}} सदस्य के रूप में, आपके कपड़ों को हमारी प्रीमियम देखभाल मिलती है। Spinly में जल्द मिलें!",
+  "placeholder_description": "{{customer_name}} = customer name, {{tier}} = loyalty tier"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-018",
+  "template_name": "VIP Thank You - Marathi",
+  "message_type": "VIP Thank You",
+  "language": "mr",
+  "is_active": 1,
+  "template_body": "धन्यवाद, {{customer_name}}! {{tier}} सदस्य म्हणून, तुमच्या कपड्यांना आमची प्रीमियम काळजी मिळते. लवकरच Spinly मध्ये भेटू!",
+  "placeholder_description": "{{customer_name}} = customer name, {{tier}} = loyalty tier"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-019",
+  "template_name": "Birthday Greeting - English",
+  "message_type": "Birthday Greeting",
+  "language": "en",
+  "is_active": 1,
+  "template_body": "Happy Birthday, {{customer_name}}! Wishing you a wonderful day. Visit Spinly today and enjoy your special birthday discount!",
+  "placeholder_description": "{{customer_name}} = customer name"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-020",
+  "template_name": "Birthday Greeting - Hindi",
+  "message_type": "Birthday Greeting",
+  "language": "hi",
+  "is_active": 1,
+  "template_body": "जन्मदिन मुबारक, {{customer_name}}! Spinly में आएं और आज अपनी विशेष जन्मदिन छूट का आनंद लें!",
+  "placeholder_description": "{{customer_name}} = customer name"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-021",
+  "template_name": "Birthday Greeting - Marathi",
+  "message_type": "Birthday Greeting",
+  "language": "mr",
+  "is_active": 1,
+  "template_body": "वाढदिवसाच्या शुभेच्छा, {{customer_name}}! Spinly ला भेट द्या आणि आजचा विशेष वाढदिवस सूट मिळवा!",
+  "placeholder_description": "{{customer_name}} = customer name"
  }
 ]

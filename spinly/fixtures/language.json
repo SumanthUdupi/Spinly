@@ -1,0 +1,5 @@
+[
+  {"doctype": "Language", "name": "en", "language_name": "English", "enabled": 1},
+  {"doctype": "Language", "name": "hi", "language_name": "Hindi", "enabled": 1},
+  {"doctype": "Language", "name": "mr", "language_name": "Marathi", "enabled": 1}
+]
