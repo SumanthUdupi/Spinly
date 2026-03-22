@@ -257,9 +257,11 @@ def _apply_best_discount(doc):
     doc.applied_promo = best.name
     doc.promo_discount_amount = disc
 
-    # Increment usage count
-    frappe.db.set_value("Promo Campaign", best.name, "usage_count",
-                        (best.usage_count or 0) + 1)
+    # Only increment usage count when the order is actually submitted (docstatus == 1),
+    # not on every draft before_save pass.
+    if getattr(doc, "docstatus", 0) == 1:
+        frappe.db.set_value("Promo Campaign", best.name, "usage_count",
+                            (best.usage_count or 0) + 1)
 
 
 # ── Private helpers ───────────────────────────────────────────────────────────

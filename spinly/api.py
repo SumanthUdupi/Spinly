@@ -236,7 +236,7 @@ def submit_order(customer: str, service: str, items: str | list,
             frappe.db.get_single_value("Spinly Settings", "redemption_pts_per_rupee") or 10
         )
         # Round down to nearest valid multiple
-        order.loyalty_points_redeemed = (order.loyalty_points_redeemed // redemption_rate) * redemption_rate
+        order.loyalty_points_redeemed = int(order.loyalty_points_redeemed // redemption_rate) * redemption_rate
 
     order.insert(ignore_permissions=True)
     order.submit()
