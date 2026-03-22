@@ -233,7 +233,19 @@ def _apply_best_discount(doc):
             if customer.dob:
                 if getdate(customer.dob).month == today_date.month:
                     eligible.append(p)
-        # Win-Back and Referral are handled by background jobs, not order-level
+        elif ctype == "Win-Back":
+            # Apply win-back discount if customer hasn't ordered in win_back_after_days
+            settings = frappe.get_cached_doc("Spinly Settings")
+            cutoff_days = int(settings.win_back_after_days or 30)
+            last_order = frappe.db.get_value(
+                "Loyalty Account", {"customer": doc.customer}, "last_order_date"
+            )
+            if last_order:
+                from frappe.utils import date_diff
+                days_inactive = date_diff(today(), getdate(last_order))
+                if days_inactive >= cutoff_days:
+                    eligible.append(p)
+        # Referral bonuses are handled by background jobs, not order-level
 
     if not eligible:
         return

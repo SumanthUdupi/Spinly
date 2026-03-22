@@ -14,7 +14,7 @@ def get_customer_by_phone(phone: str) -> dict:
     customer = frappe.db.get_value(
         "Laundry Customer",
         {"phone": phone},
-        ["name", "full_name", "phone"],
+        ["name", "full_name", "phone", "language_preference"],
         as_dict=True,
     )
     if not customer:
@@ -229,6 +229,14 @@ def submit_order(customer: str, service: str, items: str | list,
             "Loyalty Account", {"customer": customer}, "current_balance"
         ) or 0
         order.loyalty_points_redeemed = min(int(apply_loyalty_points), int(balance))
+
+    if order.loyalty_points_redeemed and order.loyalty_points_redeemed > 0:
+        # Snap to nearest multiple of redemption_pts_per_rupee (e.g. 10 pts = ₹1)
+        redemption_rate = int(
+            frappe.db.get_single_value("Spinly Settings", "redemption_pts_per_rupee") or 10
+        )
+        # Round down to nearest valid multiple
+        order.loyalty_points_redeemed = (order.loyalty_points_redeemed // redemption_rate) * redemption_rate
 
     order.insert(ignore_permissions=True)
     order.submit()

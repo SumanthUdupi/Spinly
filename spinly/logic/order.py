@@ -54,10 +54,10 @@ def _apply_pricing(doc):
     """
     Compute line totals, subtotal, discounts, tax, net_amount, grand_total.
 
-    Discount logic (both can apply simultaneously):
-      promo_discount_amount  — set by apply_best_discount() before this call
-      loyalty_points_redeemed — set by POS API (submit_order)
-        → loyalty monetary discount = loyalty_points_redeemed / redemption_pts_per_rupee
+    Discount priority (all can stack):
+      1. Tier discount  — Silver 5%, Gold 10% (from Spinly Settings)
+      2. Promo discount — set by apply_best_discount() before this call
+      3. Loyalty redemption — points_redeemed / redemption_pts_per_rupee
     """
     if not doc.service:
         return
@@ -74,15 +74,30 @@ def _apply_pricing(doc):
 
     settings = frappe.get_cached_doc("Spinly Settings")
 
+    # Tier discount
+    tier = _get_customer_tier(doc.customer)
+    tier_disc_pct = 0.0
+    if tier == "Gold":
+        tier_disc_pct = float(settings.tier_gold_discount_pct or 0)
+    elif tier == "Silver":
+        tier_disc_pct = float(settings.tier_silver_discount_pct or 0)
+    tier_disc = round(subtotal * tier_disc_pct / 100, 2)
+
     # Loyalty redemption monetary value
     redemption_rate = int(settings.redemption_pts_per_rupee or 10)
     loyalty_disc = round((doc.loyalty_points_redeemed or 0) / redemption_rate, 2)
 
-    # Total discount = promo + loyalty redemption
+    # Promo discount (set before this call by apply_best_discount)
     promo_disc = doc.promo_discount_amount or 0
-    doc.discount_amount = round(promo_disc + loyalty_disc, 2)
 
-    # net_amount = subtotal after discounts (used for loyalty earn calculation)
+    # Total discount = tier + promo + loyalty redemption
+    doc.discount_amount = round(tier_disc + promo_disc + loyalty_disc, 2)
+
+    # Store tier and promo amounts separately for invoice display
+    doc.tier_discount_amount = tier_disc
+    doc.promo_discount_amount = promo_disc  # keep (already set)
+
+    # net_amount after all discounts (floor 0)
     doc.net_amount = round(max(0, subtotal - doc.discount_amount), 2)
 
     tax_rate = (settings.tax_rate_pct or 0) / 100

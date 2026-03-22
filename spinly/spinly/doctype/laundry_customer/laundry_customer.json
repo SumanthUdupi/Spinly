@@ -23,7 +23,7 @@
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
-  {"role": "Laundry Staff", "read": 1, "write": 0, "create": 1},
+  {"role": "Laundry Staff", "read": 1, "write": 1, "create": 1},
   {"role": "Laundry Manager", "read": 1, "write": 1, "create": 1, "delete": 0},
   {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1}
  ],
