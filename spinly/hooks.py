@@ -12,6 +12,7 @@ fixtures = [
     "Alert Tag",
     "Payment Method",
     "Laundry Service",
+    {"dt": "Language", "filters": [["name", "in", ["en", "hi", "mr"]]]},
     "WhatsApp Message Template",
     "Laundry Machine",
     "Laundry Consumable",
@@ -27,6 +28,7 @@ fixtures = [
     "Promo Campaign",
     "Laundry Customer",
     "Loyalty Account",
+    "Loyalty Transaction",  # must come after Loyalty Account (FK dependency)
 ]
 
 # Authentication — redirect staff to POS on login
@@ -60,13 +62,19 @@ doc_events = {
 scheduler_events = {
     "daily": [
         "spinly.logic.loyalty.expire_points",
-        "spinly.logic.loyalty.recalculate_tiers",
         "spinly.logic.inventory.check_low_stock",
         "spinly.integrations.whatsapp_handler.send_pickup_reminders",
         "spinly.integrations.whatsapp_handler.send_win_back_messages",
+        "spinly.integrations.whatsapp_handler.send_birthday_messages",
     ],
     "hourly": [
         "spinly.logic.machine.clear_completed_timers",
+    ],
+    "weekly": [
+        "spinly.logic.loyalty.evaluate_streaks",
+    ],
+    "monthly": [
+        "spinly.logic.loyalty.recalculate_all_tiers",
     ],
 }
 

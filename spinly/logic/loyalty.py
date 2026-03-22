@@ -144,8 +144,8 @@ def expire_points():
         _update_balance(row.customer)
 
 
-def recalculate_tiers():
-    """Daily job: recompute tier for all active accounts."""
+def recalculate_all_tiers():
+    """Monthly job: recompute tier for all active accounts from total_points_earned."""
     settings = frappe.get_cached_doc("Spinly Settings")
     accounts = frappe.get_all(
         "Loyalty Account",
@@ -158,6 +158,33 @@ def recalculate_tiers():
             "tier": new_tier,
             "tier_updated_on": today(),
         })
+
+
+# Alias retained for backwards compatibility with any manual calls
+recalculate_tiers = recalculate_all_tiers
+
+
+def evaluate_streaks():
+    """Weekly job: re-evaluate current_streak_weeks for all active accounts.
+    Corrects any drift where real-time streak check (in earn_points) drifted.
+    Does not create transactions — only corrects the counter."""
+    settings = frappe.get_cached_doc("Spinly Settings")
+    weeks_required = int(settings.streak_weeks_required or 4)
+    accounts = frappe.get_all(
+        "Loyalty Account",
+        filters={"is_active": 1},
+        fields=["name", "customer", "last_order_date", "current_streak_weeks"],
+    )
+    today_date = getdate(today())
+    for acc in accounts:
+        if not acc.last_order_date:
+            if acc.current_streak_weeks != 0:
+                frappe.db.set_value("Loyalty Account", acc.name, "current_streak_weeks", 0)
+            continue
+        days_since = (today_date - getdate(acc.last_order_date)).days
+        # If no order in more than 7 days, streak should be 0 (broken)
+        if days_since > 7 and acc.current_streak_weeks > 0:
+            frappe.db.set_value("Loyalty Account", acc.name, "current_streak_weeks", 0)
 
 
 # ── Promo engine ──────────────────────────────────────────────────────────────
