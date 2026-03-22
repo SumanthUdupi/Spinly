@@ -13,6 +13,10 @@ Covers the core user journeys:
   10. Accessibility: focus states, aria attributes
   11. Redesign: SVG icons present (no structural emoji)
   12. Redesign: DM Sans / Orbitron font stack loaded
+  13. ORD-06: Empty cart helper text (new)
+  14. Keyboard input support (new)
+  15. ARIA labels on quantity controls (new)
+  16. SEC-08: color_code sanitization (new)
 """
 import re
 import pytest
@@ -567,3 +571,184 @@ def test_reduced_motion_css_rule_present(page: Page):
         return false;
     }""")
     assert has_reduced, "Expected @media (prefers-reduced-motion) rule in CSS"
+
+
+# ── Test 26: ORD-06 — Helper text visible when cart empty ─────────────────
+
+def test_empty_cart_helper_text_visible(page: Page):
+    """Helper text 'Add at least one garment' shows when no items selected."""
+    navigate_to_pos(page)
+
+    type_phone(page, "9876543210")
+    page.wait_for_timeout(2000)
+    select_btn = page.locator("#sp-select-customer-btn")
+    if not select_btn.is_visible():
+        pytest.skip("Skipping: customer fixture not loaded")
+    select_btn.click()
+    page.wait_for_timeout(800)
+
+    helper = page.locator("#sp-review-helper")
+    expect(helper).to_be_visible()
+    helper_text = helper.text_content() or ""
+    assert "garment" in helper_text.lower() or "add" in helper_text.lower(), \
+        f"Helper text should mention adding garments, got: {helper_text!r}"
+
+
+# ── Test 27: ORD-06 — Helper text hides when item added ───────────────────
+
+def test_empty_cart_helper_text_hides_after_add(page: Page):
+    """Helper text disappears once at least one garment is added."""
+    navigate_to_pos(page)
+
+    type_phone(page, "9876543210")
+    page.wait_for_timeout(2000)
+    select_btn = page.locator("#sp-select-customer-btn")
+    if not select_btn.is_visible():
+        pytest.skip("Skipping: customer fixture not loaded")
+    select_btn.click()
+    page.wait_for_timeout(800)
+
+    # Verify visible before adding
+    helper = page.locator("#sp-review-helper")
+    expect(helper).to_be_visible()
+
+    # Add one garment
+    page.locator(".sp-garment-btn .sp-qty-btn[data-action='inc']").first.click()
+    page.wait_for_timeout(200)
+
+    # Helper should now be hidden
+    helper_display = helper.evaluate("el => el.style.display")
+    assert helper_display == "none", \
+        f"Helper text should be hidden after adding garment, style.display={helper_display!r}"
+
+
+# ── Test 28: Keyboard input on phone keypad ───────────────────────────────
+
+def test_keyboard_input_on_screen1(page: Page):
+    """Hardware keyboard digits update phone display on Screen 1."""
+    navigate_to_pos(page)
+
+    display = page.locator("#sp-phone-value")
+
+    # Focus the page first (click anywhere safe)
+    page.locator("body").click()
+    page.wait_for_timeout(100)
+
+    # Send keyboard digits
+    page.keyboard.press("9")
+    page.keyboard.press("8")
+    page.keyboard.press("7")
+    page.wait_for_timeout(200)
+
+    phone_text = display.text_content() or ""
+    assert "987" in phone_text.replace(" ", ""), \
+        f"Keyboard digits should update phone display, got: {phone_text!r}"
+
+    # Backspace should remove last digit
+    page.keyboard.press("Backspace")
+    page.wait_for_timeout(100)
+    phone_text_after = display.text_content() or ""
+    assert "987" not in phone_text_after.replace(" ", "") or \
+        len(phone_text_after.replace(" ", "")) < len(phone_text.replace(" ", "")), \
+        "Backspace should shorten the phone number"
+
+
+# ── Test 29: Keyboard input Escape clears phone ───────────────────────────
+
+def test_keyboard_escape_clears_phone(page: Page):
+    """Pressing Escape on hardware keyboard clears the phone display."""
+    navigate_to_pos(page)
+
+    page.locator("body").click()
+    page.keyboard.press("1")
+    page.keyboard.press("2")
+    page.keyboard.press("3")
+    page.wait_for_timeout(200)
+
+    page.keyboard.press("Escape")
+    page.wait_for_timeout(100)
+
+    phone_text = (page.locator("#sp-phone-value").text_content() or "").strip()
+    assert phone_text == "", f"Escape should clear phone display, got: {phone_text!r}"
+
+    cursor = page.locator("#sp-phone-cursor")
+    cursor_display = cursor.evaluate("el => el.style.display")
+    assert cursor_display != "none", "Cursor should reappear after Escape"
+
+
+# ── Test 30: ARIA labels on quantity +/- buttons ──────────────────────────
+
+def test_qty_buttons_have_aria_labels(page: Page):
+    """Quantity +/- buttons have descriptive aria-label attributes."""
+    navigate_to_pos(page)
+
+    type_phone(page, "9876543210")
+    page.wait_for_timeout(2000)
+    select_btn = page.locator("#sp-select-customer-btn")
+    if not select_btn.is_visible():
+        pytest.skip("Skipping: customer fixture not loaded")
+    select_btn.click()
+    page.wait_for_timeout(800)
+
+    inc_buttons = page.locator(".sp-qty-btn[data-action='inc']")
+    count = inc_buttons.count()
+    assert count > 0, "Expected increment buttons in garment grid"
+
+    for i in range(min(count, 3)):  # Check first 3
+        label = inc_buttons.nth(i).get_attribute("aria-label")
+        assert label and "increase" in label.lower(), \
+            f"Inc button {i} should have descriptive aria-label, got: {label!r}"
+
+    dec_buttons = page.locator(".sp-qty-btn[data-action='dec']")
+    for i in range(min(dec_buttons.count(), 3)):
+        label = dec_buttons.nth(i).get_attribute("aria-label")
+        assert label and "decrease" in label.lower(), \
+            f"Dec button {i} should have descriptive aria-label, got: {label!r}"
+
+
+# ── Test 31: Tag button touch targets ≥ 44px ─────────────────────────────
+
+def test_tag_btn_touch_target_minimum(page: Page):
+    """Alert tag buttons meet 44px minimum touch target height."""
+    navigate_to_pos(page)
+
+    type_phone(page, "9876543210")
+    page.wait_for_timeout(2000)
+    select_btn = page.locator("#sp-select-customer-btn")
+    if not select_btn.is_visible():
+        pytest.skip("Skipping: customer fixture not loaded")
+    select_btn.click()
+    page.wait_for_timeout(800)
+
+    tags = page.locator("#sp-tag-row .sp-tag-btn")
+    count = tags.count()
+    if count == 0:
+        pytest.skip("No alert tags configured")
+
+    for i in range(min(count, 4)):
+        box = tags.nth(i).bounding_box()
+        assert box is not None
+        assert box["height"] >= 44, \
+            f"Tag button {i} height {box['height']}px < 44px minimum"
+
+
+# ── Test 32: SEC-08 — color_code sanitization ─────────────────────────────
+
+def test_color_code_only_hex_applied(page: Page):
+    """Alert tag color_code values are restricted to hex format only."""
+    navigate_to_pos(page)
+
+    # This tests the _sanitizeColorCode function indirectly:
+    # Valid hex colors in --tag-color custom property should be #xxxxxx format
+    tag_btns = page.locator(".sp-tag-btn")
+    count = tag_btns.count()
+    if count == 0:
+        pytest.skip("No alert tags to check")
+
+    for i in range(min(count, 5)):
+        tag_color = tag_btns.nth(i).evaluate(
+            "el => el.style.getPropertyValue('--tag-color').trim()"
+        )
+        if tag_color:
+            assert re.match(r'^#[0-9A-Fa-f]{3,8}$', tag_color), \
+                f"Tag {i} --tag-color must be hex only, got: {tag_color!r}"
