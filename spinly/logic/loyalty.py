@@ -167,9 +167,8 @@ recalculate_tiers = recalculate_all_tiers
 def evaluate_streaks():
     """Weekly job: re-evaluate current_streak_weeks for all active accounts.
     Corrects any drift where real-time streak check (in earn_points) drifted.
-    Does not create transactions — only corrects the counter."""
-    settings = frappe.get_cached_doc("Spinly Settings")
-    weeks_required = int(settings.streak_weeks_required or 4)
+    Does not create transactions — only corrects the counter.
+    A streak is considered broken if no order was placed in the past 7 days."""
     accounts = frappe.get_all(
         "Loyalty Account",
         filters={"is_active": 1},
