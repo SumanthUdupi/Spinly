@@ -1,0 +1,27 @@
+{
+ "actions": [],
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": ["garment_type", "item_icon", "quantity", "weight_kg", "unit_price", "line_total"],
+ "fields": [
+  {"fieldname": "garment_type", "fieldtype": "Link", "label": "Garment Type", "options": "Garment Type", "reqd": 1, "in_list_view": 1, "in_grid_view": 1},
+  {"fieldname": "item_icon", "fieldtype": "Data", "label": "Icon", "fetch_from": "garment_type.icon_emoji", "read_only": 1, "in_list_view": 1},
+  {"fieldname": "quantity", "fieldtype": "Int", "label": "Qty", "reqd": 1, "in_list_view": 1, "in_grid_view": 1, "default": "1"},
+  {"fieldname": "weight_kg", "fieldtype": "Float", "label": "Weight (kg)", "in_list_view": 1, "in_grid_view": 1},
+  {"fieldname": "unit_price", "fieldtype": "Currency", "label": "Unit Price", "in_list_view": 1, "options": "INR"},
+  {"fieldname": "line_total", "fieldtype": "Currency", "label": "Line Total", "in_list_view": 1, "options": "INR", "read_only": 1}
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Spinly",
+ "name": "Order Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

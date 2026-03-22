@@ -1,0 +1,26 @@
+[
+ {
+  "doctype": "Laundry Service",
+  "name": "SRV-001",
+  "service_name": "Wash & Fold",
+  "service_type": "Wash & Fold",
+  "base_price_per_kg": 60.0,
+  "processing_minutes": 120
+ },
+ {
+  "doctype": "Laundry Service",
+  "name": "SRV-002",
+  "service_name": "Wash & Iron",
+  "service_type": "Wash & Iron",
+  "base_price_per_kg": 90.0,
+  "processing_minutes": 180
+ },
+ {
+  "doctype": "Laundry Service",
+  "name": "SRV-003",
+  "service_name": "Dry Clean",
+  "service_type": "Dry Clean",
+  "base_price_per_kg": 150.0,
+  "processing_minutes": 480
+ }
+]

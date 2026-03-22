@@ -1,0 +1,68 @@
+[
+ {
+  "doctype": "Workflow",
+  "name": "Job Card Lifecycle",
+  "workflow_name": "Job Card Lifecycle",
+  "document_type": "Laundry Job Card",
+  "workflow_state_field": "workflow_state",
+  "is_active": 1,
+  "send_email_alert": 0,
+  "states": [
+   {
+    "state": "Sorting",
+    "doc_status": "0",
+    "update_field": "workflow_state",
+    "update_value": "Sorting",
+    "allow_edit": "Laundry Staff",
+    "style": "Warning"
+   },
+   {
+    "state": "Washing",
+    "doc_status": "0",
+    "update_field": "workflow_state",
+    "update_value": "Washing",
+    "allow_edit": "Laundry Staff",
+    "style": "Warning"
+   },
+   {
+    "state": "Drying",
+    "doc_status": "0",
+    "update_field": "workflow_state",
+    "update_value": "Drying",
+    "allow_edit": "Laundry Staff",
+    "style": "Warning"
+   },
+   {
+    "state": "Ironing",
+    "doc_status": "0",
+    "update_field": "workflow_state",
+    "update_value": "Ironing",
+    "allow_edit": "Laundry Staff",
+    "style": "Warning"
+   },
+   {
+    "state": "Ready",
+    "doc_status": "0",
+    "update_field": "workflow_state",
+    "update_value": "Ready",
+    "allow_edit": "Laundry Manager",
+    "style": "Success"
+   },
+   {
+    "state": "Delivered",
+    "doc_status": "1",
+    "update_field": "workflow_state",
+    "update_value": "Delivered",
+    "allow_edit": "Laundry Staff",
+    "style": "Success"
+   }
+  ],
+  "transitions": [
+   {"state": "Sorting",  "action": "Start Washing",  "next_state": "Washing",   "allowed": "Laundry Staff"},
+   {"state": "Washing",  "action": "Start Drying",   "next_state": "Drying",    "allowed": "Laundry Staff"},
+   {"state": "Drying",   "action": "Start Ironing",  "next_state": "Ironing",   "allowed": "Laundry Staff"},
+   {"state": "Ironing",  "action": "Mark Ready",     "next_state": "Ready",     "allowed": "Laundry Staff"},
+   {"state": "Ready",    "action": "Mark Delivered",  "next_state": "Delivered", "allowed": "Laundry Staff"}
+  ]
+ }
+]

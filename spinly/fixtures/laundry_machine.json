@@ -1,0 +1,34 @@
+[
+ {
+  "doctype": "Laundry Machine",
+  "name": "MAC-01",
+  "machine_name": "Washer 1",
+  "capacity_kg": 10.0,
+  "status": "Idle",
+  "current_load_kg": 0
+ },
+ {
+  "doctype": "Laundry Machine",
+  "name": "MAC-02",
+  "machine_name": "Washer 2",
+  "capacity_kg": 10.0,
+  "status": "Idle",
+  "current_load_kg": 0
+ },
+ {
+  "doctype": "Laundry Machine",
+  "name": "MAC-03",
+  "machine_name": "Dryer 1",
+  "capacity_kg": 8.0,
+  "status": "Idle",
+  "current_load_kg": 0
+ },
+ {
+  "doctype": "Laundry Machine",
+  "name": "MAC-04",
+  "machine_name": "Dry Clean Machine",
+  "capacity_kg": 6.0,
+  "status": "Idle",
+  "current_load_kg": 0
+ }
+]

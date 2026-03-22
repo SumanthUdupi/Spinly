@@ -1,0 +1,34 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["naming_series", "full_name", "phone", "col_break", "dob", "language_preference", "referred_by"],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series", "options": "CUST-.#####", "default": "CUST-.#####"},
+  {"fieldname": "full_name", "fieldtype": "Data", "label": "Full Name", "reqd": 1, "in_list_view": 1, "in_global_search": 1},
+  {"fieldname": "phone", "fieldtype": "Data", "label": "Phone Number", "reqd": 1, "in_list_view": 1, "in_global_search": 1,
+   "unique": 1, "description": "Primary search field — must be unique"},
+  {"fieldname": "col_break", "fieldtype": "Column Break"},
+  {"fieldname": "dob", "fieldtype": "Date", "label": "Date of Birth", "description": "Used for birthday promo campaigns"},
+  {"fieldname": "language_preference", "fieldtype": "Link", "label": "Language Preference", "options": "Language"},
+  {"fieldname": "referred_by", "fieldtype": "Link", "label": "Referred By", "options": "Laundry Customer"}
+ ],
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Spinly",
+ "name": "Laundry Customer",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {"role": "Laundry Staff", "read": 1, "write": 0, "create": 1},
+  {"role": "Laundry Manager", "read": 1, "write": 1, "create": 1, "delete": 0},
+  {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1}
+ ],
+ "search_fields": "full_name,phone",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,7 @@
+[
+ {"doctype": "Workflow Action Master", "name": "Start Washing", "workflow_action_name": "Start Washing"},
+ {"doctype": "Workflow Action Master", "name": "Start Drying", "workflow_action_name": "Start Drying"},
+ {"doctype": "Workflow Action Master", "name": "Start Ironing", "workflow_action_name": "Start Ironing"},
+ {"doctype": "Workflow Action Master", "name": "Mark Ready", "workflow_action_name": "Mark Ready"},
+ {"doctype": "Workflow Action Master", "name": "Mark Delivered", "workflow_action_name": "Mark Delivered"}
+]

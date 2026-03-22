@@ -1,0 +1,255 @@
+<!-- Spinly POS — Staff Interface -->
+<div id="spinly-pos" class="sp-root">
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCREEN 1 — Customer Search
+  ═══════════════════════════════════════════════════════════ -->
+  <div id="sp-screen-1" class="sp-screen active">
+    <div class="sp-header">
+      <!-- SVG spin/refresh icon replaces 🧺 emoji -->
+      <span class="sp-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+      </span>
+      <span class="sp-title">SPINLY</span>
+      <span class="sp-subtitle">Customer Search</span>
+    </div>
+
+    <div class="sp-phone-display" id="sp-phone-display">
+      <span id="sp-phone-value" class="sp-phone-value"></span><span class="sp-phone-cursor" id="sp-phone-cursor"></span>
+      <div class="sp-phone-hint">Enter customer phone number</div>
+    </div>
+
+    <!-- Customer result card (hidden until match) -->
+    <div id="sp-customer-card" class="sp-customer-card hidden">
+      <div class="sp-customer-info">
+        <span id="sp-cust-name" class="sp-cust-name"></span>
+        <span id="sp-cust-tier" class="sp-tier-badge"></span>
+      </div>
+      <div class="sp-customer-meta">
+        <span id="sp-cust-points" class="sp-points"></span>
+        <span id="sp-cust-phone" class="sp-cust-phone-sub"></span>
+      </div>
+    </div>
+
+    <!-- New customer form (hidden until no match) -->
+    <div id="sp-new-customer-form" class="sp-new-form hidden">
+      <div class="sp-new-form-title">New Customer</div>
+      <input type="text" id="sp-new-name" class="sp-input" placeholder="Full Name" autocomplete="off" autocapitalize="words" />
+      <button class="sp-btn sp-btn-green sp-btn-full" id="sp-save-customer-btn">SAVE &amp; CONTINUE</button>
+    </div>
+
+    <!-- Numeric keypad -->
+    <div class="sp-keypad" id="sp-keypad" role="group" aria-label="Phone number keypad">
+      <div class="sp-keypad-row">
+        <button class="sp-key" data-digit="1" aria-label="1">1</button>
+        <button class="sp-key" data-digit="2" aria-label="2">2</button>
+        <button class="sp-key" data-digit="3" aria-label="3">3</button>
+      </div>
+      <div class="sp-keypad-row">
+        <button class="sp-key" data-digit="4" aria-label="4">4</button>
+        <button class="sp-key" data-digit="5" aria-label="5">5</button>
+        <button class="sp-key" data-digit="6" aria-label="6">6</button>
+      </div>
+      <div class="sp-keypad-row">
+        <button class="sp-key" data-digit="7" aria-label="7">7</button>
+        <button class="sp-key" data-digit="8" aria-label="8">8</button>
+        <button class="sp-key" data-digit="9" aria-label="9">9</button>
+      </div>
+      <div class="sp-keypad-row">
+        <button class="sp-key sp-key-clear" id="sp-key-clear" aria-label="Clear">CLR</button>
+        <button class="sp-key" data-digit="0" aria-label="0">0</button>
+        <!-- SVG backspace replaces ⌫ -->
+        <button class="sp-key sp-key-back" id="sp-key-back" aria-label="Backspace">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="14" y2="13"/><line x1="14" y1="9" x2="18" y2="13"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="sp-footer">
+      <button class="sp-btn sp-btn-blue sp-btn-full hidden" id="sp-select-customer-btn">
+        SELECT CUSTOMER
+      </button>
+      <button class="sp-btn sp-btn-outline sp-btn-full hidden" id="sp-add-new-btn">+ ADD NEW CUSTOMER</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCREEN 2 — Order Builder
+  ═══════════════════════════════════════════════════════════ -->
+  <div id="sp-screen-2" class="sp-screen hidden">
+    <div class="sp-header sp-header-compact">
+      <button class="sp-back-btn" id="sp-s2-back" aria-label="Back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Back
+      </button>
+      <span id="sp-s2-customer-name" class="sp-title-sm"></span>
+      <span id="sp-s2-tier" class="sp-tier-badge-sm"></span>
+    </div>
+
+    <!-- Garment icon grid -->
+    <div class="sp-section-label">SELECT GARMENTS</div>
+    <div class="sp-garment-grid" id="sp-garment-grid" role="group" aria-label="Garment types">
+      <!-- Populated dynamically -->
+    </div>
+
+    <!-- Service selector -->
+    <div class="sp-section-label">SERVICE</div>
+    <div class="sp-service-row" id="sp-service-row" role="group" aria-label="Services">
+      <!-- Populated dynamically -->
+    </div>
+
+    <!-- Alert tags -->
+    <div class="sp-section-label">ALERT TAGS <span class="sp-optional">(optional)</span></div>
+    <div class="sp-tag-row" id="sp-tag-row" role="group" aria-label="Alert tags">
+      <!-- Populated dynamically -->
+    </div>
+
+    <!-- Special instructions -->
+    <div class="sp-section-label">INSTRUCTIONS <span class="sp-optional">(optional)</span></div>
+    <input type="text" id="sp-instructions" class="sp-input sp-input-sm"
+      placeholder="e.g. Handle gently, no machine dry"
+      autocomplete="off" autocapitalize="sentences" />
+
+    <!-- Footer summary -->
+    <div class="sp-order-footer">
+      <div class="sp-order-summary">
+        <span id="sp-weight-display" class="sp-weight">0.0 kg</span>
+        <span id="sp-price-display" class="sp-price">₹0.00</span>
+      </div>
+      <button class="sp-btn sp-btn-blue sp-btn-full sp-btn-xl" id="sp-review-btn" disabled>
+        REVIEW ORDER
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCREEN 3 — Confirm & Print
+  ═══════════════════════════════════════════════════════════ -->
+  <div id="sp-screen-3" class="sp-screen hidden">
+    <div class="sp-header sp-header-compact">
+      <button class="sp-back-btn" id="sp-s3-back" aria-label="Back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Back
+      </button>
+      <span class="sp-title-sm">Review &amp; Confirm</span>
+    </div>
+
+    <!-- Order summary card -->
+    <div class="sp-confirm-card">
+      <div class="sp-confirm-row">
+        <span class="sp-label">Machine</span>
+        <span id="sp-confirm-machine" class="sp-value sp-value-cyan"></span>
+      </div>
+      <div class="sp-confirm-row">
+        <span class="sp-label">ETA</span>
+        <span id="sp-confirm-eta" class="sp-value sp-value-cyan"></span>
+      </div>
+    </div>
+
+    <!-- Alert badges (large, unmissable) -->
+    <div id="sp-confirm-tags" class="sp-confirm-tags"></div>
+
+    <!-- Loyalty prompt -->
+    <div id="sp-loyalty-prompt" class="sp-loyalty-prompt hidden" role="region" aria-label="Loyalty reward">
+      <span id="sp-loyalty-text" class="sp-loyalty-text"></span>
+      <div class="sp-loyalty-btns">
+        <button class="sp-btn sp-btn-green sp-btn-sm" id="sp-loyalty-yes">YES — APPLY</button>
+        <button class="sp-btn sp-btn-outline sp-btn-sm" id="sp-loyalty-no">SKIP</button>
+      </div>
+    </div>
+
+    <!-- Price breakdown -->
+    <div class="sp-price-breakdown" role="region" aria-label="Price breakdown">
+      <div class="sp-price-row"><span>Subtotal</span><span id="sp-sub-display"></span></div>
+      <div class="sp-price-row" id="sp-discount-row" style="display:none">
+        <span id="sp-discount-label">Discount</span>
+        <span id="sp-discount-display" class="sp-green"></span>
+      </div>
+      <div class="sp-price-row sp-price-total"><span>NET TOTAL</span><span id="sp-total-display"></span></div>
+    </div>
+
+    <!-- Payment method -->
+    <div class="sp-section-label">PAYMENT METHOD</div>
+    <div class="sp-payment-row" id="sp-payment-row" role="group" aria-label="Payment methods">
+      <!-- Populated dynamically -->
+    </div>
+
+    <div class="sp-footer">
+      <button class="sp-btn sp-btn-green sp-btn-full sp-btn-xl" id="sp-confirm-btn">
+        CONFIRM &amp; PRINT
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCREEN 4 — Job Card Advancement
+  ═══════════════════════════════════════════════════════════ -->
+  <div id="sp-screen-4" class="sp-screen hidden">
+    <div class="sp-header sp-header-compact">
+      <button class="sp-back-btn" id="sp-s4-back" aria-label="New order">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        New Order
+      </button>
+      <span id="sp-s4-order-id" class="sp-title-sm"></span>
+    </div>
+
+    <!-- Lot number — very large, Orbitron monospace -->
+    <div class="sp-lot-display" id="sp-lot-display" aria-label="Lot number"></div>
+    <div class="sp-machine-display" id="sp-machine-display"></div>
+
+    <!-- Tier badge -->
+    <div id="sp-s4-tier" class="sp-tier-badge sp-tier-center"></div>
+
+    <!-- Alert tags (re-shown) -->
+    <div id="sp-s4-tags" class="sp-confirm-tags"></div>
+
+    <!-- Special instructions -->
+    <div id="sp-s4-instructions" class="sp-instructions-box hidden"></div>
+
+    <!-- Workflow progress bar -->
+    <div class="sp-workflow-bar" role="region" aria-label="Order progress">
+      <div class="sp-wf-steps" id="sp-wf-steps"></div>
+    </div>
+
+    <!-- Current state label -->
+    <div id="sp-current-state" class="sp-state-label" aria-live="polite"></div>
+
+    <div class="sp-footer sp-footer-jc">
+      <button class="sp-btn sp-btn-orange sp-btn-full sp-btn-xl" id="sp-next-step-btn">
+        NEXT STEP
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+      <button class="sp-btn sp-btn-green sp-btn-full sp-btn-xl hidden" id="sp-mark-paid-btn">
+        MARK AS PAID
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Global spinner -->
+  <div id="sp-spinner" class="sp-spinner hidden" role="status" aria-label="Loading">
+    <div class="sp-spinner-inner"></div>
+  </div>
+</div>

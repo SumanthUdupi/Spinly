@@ -1,0 +1,8 @@
+[
+ {"doctype": "Alert Tag", "name": "ATAG-01", "tag_name": "Fragile", "color_code": "#ef4444", "icon_emoji": "⚠️", "sort_order": 1, "is_active": 1},
+ {"doctype": "Alert Tag", "name": "ATAG-02", "tag_name": "VIP", "color_code": "#f59e0b", "icon_emoji": "⭐", "sort_order": 2, "is_active": 1},
+ {"doctype": "Alert Tag", "name": "ATAG-03", "tag_name": "Stain", "color_code": "#8b5cf6", "icon_emoji": "🔴", "sort_order": 3, "is_active": 1},
+ {"doctype": "Alert Tag", "name": "ATAG-04", "tag_name": "Hand Wash Only", "color_code": "#3b82f6", "icon_emoji": "🤲", "sort_order": 4, "is_active": 1},
+ {"doctype": "Alert Tag", "name": "ATAG-05", "tag_name": "No Iron", "color_code": "#6b7280", "icon_emoji": "🚫", "sort_order": 5, "is_active": 1},
+ {"doctype": "Alert Tag", "name": "ATAG-06", "tag_name": "Express", "color_code": "#10b981", "icon_emoji": "⚡", "sort_order": 6, "is_active": 1}
+]

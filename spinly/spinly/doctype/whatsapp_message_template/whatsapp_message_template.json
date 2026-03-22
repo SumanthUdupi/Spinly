@@ -1,0 +1,33 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["naming_series", "template_name", "message_type", "language", "is_active", "section_body", "template_body"],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series", "options": "WTPL-.##", "default": "WTPL-.##"},
+  {"fieldname": "template_name", "fieldtype": "Data", "label": "Template Name", "reqd": 1, "in_list_view": 1, "in_global_search": 1},
+  {"fieldname": "message_type", "fieldtype": "Select", "label": "Message Type", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1,
+   "options": "Order Confirmation\nPickup Reminder\nPayment Thanks\nWin-Back\nScratch Card\nVIP Thank You"},
+  {"fieldname": "language", "fieldtype": "Link", "label": "Language", "options": "Language", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1},
+  {"fieldname": "is_active", "fieldtype": "Check", "label": "Is Active", "default": "1", "in_list_view": 1},
+  {"fieldname": "section_body", "fieldtype": "Section Break", "label": "Template Body"},
+  {"fieldname": "template_body", "fieldtype": "Long Text", "label": "Template Body", "reqd": 1,
+   "description": "Use {{customer_name}}, {{eta}}, {{total_amount}}, {{upi_link}}, {{lot_number}}, {{points_balance}}, {{discount_applied}}, {{streak_progress}}"}
+ ],
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Spinly",
+ "name": "WhatsApp Message Template",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {"role": "Laundry Manager", "read": 1, "write": 1, "create": 1, "delete": 0},
+  {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1}
+ ],
+ "sort_field": "message_type",
+ "sort_order": "ASC",
+ "states": []
+}

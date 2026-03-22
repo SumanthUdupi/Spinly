@@ -1,0 +1,12 @@
+[
+ {
+  "doctype": "Spinly Settings",
+  "name": "Spinly Settings",
+  "currency_symbol": "₹",
+  "tax_rate_pct": 0,
+  "late_fee_per_day": 0,
+  "loyalty_points_per_rupee": 1,
+  "scratch_card_trigger_orders": 5,
+  "win_back_after_days": 30
+ }
+]

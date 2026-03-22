@@ -1,0 +1,14 @@
+[
+ {"doctype": "Garment Type", "name": "GT-01", "garment_name": "Shirt", "icon_emoji": "👔", "default_weight_kg": 0.3, "sort_order": 1, "is_active": 1},
+ {"doctype": "Garment Type", "name": "GT-02", "garment_name": "Trousers", "icon_emoji": "👖", "default_weight_kg": 0.4, "sort_order": 2, "is_active": 1},
+ {"doctype": "Garment Type", "name": "GT-03", "garment_name": "Saree", "icon_emoji": "🧣", "default_weight_kg": 0.5, "sort_order": 3, "is_active": 1},
+ {"doctype": "Garment Type", "name": "GT-04", "garment_name": "Kurta", "icon_emoji": "👘", "default_weight_kg": 0.35, "sort_order": 4, "is_active": 1},
+ {"doctype": "Garment Type", "name": "GT-05", "garment_name": "Suit (2-piece)", "icon_emoji": "🤵", "default_weight_kg": 0.8, "sort_order": 5, "is_active": 1},
+ {"doctype": "Garment Type", "name": "GT-06", "garment_name": "Jacket", "icon_emoji": "🧥", "default_weight_kg": 0.7, "sort_order": 6, "is_active": 1},
+ {"doctype": "Garment Type", "name": "GT-07", "garment_name": "Blanket", "icon_emoji": "🛏️", "default_weight_kg": 1.5, "sort_order": 7, "is_active": 1},
+ {"doctype": "Garment Type", "name": "GT-08", "garment_name": "Bed Sheet", "icon_emoji": "🛌", "default_weight_kg": 0.8, "sort_order": 8, "is_active": 1},
+ {"doctype": "Garment Type", "name": "GT-09", "garment_name": "T-Shirt", "icon_emoji": "👕", "default_weight_kg": 0.2, "sort_order": 9, "is_active": 1},
+ {"doctype": "Garment Type", "name": "GT-10", "garment_name": "Dress", "icon_emoji": "👗", "default_weight_kg": 0.4, "sort_order": 10, "is_active": 1},
+ {"doctype": "Garment Type", "name": "GT-11", "garment_name": "Curtain", "icon_emoji": "🪟", "default_weight_kg": 1.0, "sort_order": 11, "is_active": 1},
+ {"doctype": "Garment Type", "name": "GT-12", "garment_name": "Towel", "icon_emoji": "🏊", "default_weight_kg": 0.3, "sort_order": 12, "is_active": 1}
+]

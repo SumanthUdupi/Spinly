@@ -1,0 +1,8 @@
+[
+ {"doctype": "Workflow State", "name": "Sorting", "workflow_state_name": "Sorting", "style": "Warning"},
+ {"doctype": "Workflow State", "name": "Washing", "workflow_state_name": "Washing", "style": "Warning"},
+ {"doctype": "Workflow State", "name": "Drying", "workflow_state_name": "Drying", "style": "Warning"},
+ {"doctype": "Workflow State", "name": "Ironing", "workflow_state_name": "Ironing", "style": "Warning"},
+ {"doctype": "Workflow State", "name": "Ready", "workflow_state_name": "Ready", "style": "Success"},
+ {"doctype": "Workflow State", "name": "Delivered", "workflow_state_name": "Delivered", "style": "Success"}
+]

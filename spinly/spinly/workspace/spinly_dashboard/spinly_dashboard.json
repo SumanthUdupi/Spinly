@@ -1,0 +1,29 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"sp_hdr_ops\",\"type\":\"header\",\"data\":{\"text\":\"Operations\",\"col\":12}},{\"id\":\"sp_card_ops\",\"type\":\"card\",\"data\":{\"card_name\":\"Operations\",\"col\":4,\"links\":[{\"label\":\"New Order\",\"type\":\"DocType\",\"link_to\":\"Laundry Order\",\"onboard\":1,\"icon\":\"fa fa-plus\"},{\"label\":\"Active Job Cards\",\"type\":\"DocType\",\"link_to\":\"Laundry Job Card\",\"icon\":\"fa fa-tasks\"},{\"label\":\"Customers\",\"type\":\"DocType\",\"link_to\":\"Laundry Customer\",\"icon\":\"fa fa-user\"}]}},{\"id\":\"sp_card_machines\",\"type\":\"card\",\"data\":{\"card_name\":\"Machines & Inventory\",\"col\":4,\"links\":[{\"label\":\"Machines\",\"type\":\"DocType\",\"link_to\":\"Laundry Machine\",\"icon\":\"fa fa-cogs\"},{\"label\":\"Consumables\",\"type\":\"DocType\",\"link_to\":\"Laundry Consumable\",\"icon\":\"fa fa-flask\"},{\"label\":\"Restock Log\",\"type\":\"DocType\",\"link_to\":\"Inventory Restock Log\",\"icon\":\"fa fa-plus-square\"}]}},{\"id\":\"sp_card_loyalty\",\"type\":\"card\",\"data\":{\"card_name\":\"Loyalty & Promos\",\"col\":4,\"links\":[{\"label\":\"Loyalty Accounts\",\"type\":\"DocType\",\"link_to\":\"Loyalty Account\",\"icon\":\"fa fa-star\"},{\"label\":\"Scratch Cards\",\"type\":\"DocType\",\"link_to\":\"Scratch Card\",\"icon\":\"fa fa-ticket\"},{\"label\":\"Promo Campaigns\",\"type\":\"DocType\",\"link_to\":\"Promo Campaign\",\"icon\":\"fa fa-tag\"}]}},{\"id\":\"sp_hdr_comms\",\"type\":\"header\",\"data\":{\"text\":\"Communications & Settings\",\"col\":12}},{\"id\":\"sp_card_comms\",\"type\":\"card\",\"data\":{\"card_name\":\"Communications\",\"col\":6,\"links\":[{\"label\":\"WhatsApp Log\",\"type\":\"DocType\",\"link_to\":\"WhatsApp Message Log\",\"icon\":\"fa fa-envelope\"},{\"label\":\"WA Templates\",\"type\":\"DocType\",\"link_to\":\"WhatsApp Message Template\",\"icon\":\"fa fa-file-text\"}]}},{\"id\":\"sp_card_settings\",\"type\":\"card\",\"data\":{\"card_name\":\"Configuration\",\"col\":6,\"links\":[{\"label\":\"Spinly Settings\",\"type\":\"DocType\",\"link_to\":\"Spinly Settings\",\"icon\":\"fa fa-gear\"},{\"label\":\"Services\",\"type\":\"DocType\",\"link_to\":\"Laundry Service\",\"icon\":\"fa fa-list\"},{\"label\":\"Garment Types\",\"type\":\"DocType\",\"link_to\":\"Garment Type\",\"icon\":\"fa fa-tags\"},{\"label\":\"Alert Tags\",\"type\":\"DocType\",\"link_to\":\"Alert Tag\",\"icon\":\"fa fa-exclamation-triangle\"},{\"label\":\"Payment Methods\",\"type\":\"DocType\",\"link_to\":\"Payment Method\",\"icon\":\"fa fa-credit-card\"}]}}]",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "Workspace",
+ "for_user": "",
+ "icon": "🧺",
+ "is_default": 0,
+ "is_hidden": 0,
+ "label": "Spinly",
+ "module": "Spinly",
+ "name": "Spinly",
+ "onboarding": "",
+ "parent_page": "",
+ "public": 1,
+ "roles": [
+  {"role": "Laundry Manager"},
+  {"role": "System Manager"}
+ ],
+ "shortcuts": [
+  {"label": "Laundry Order", "link_to": "Laundry Order", "type": "DocType", "color": "Blue", "icon": "fa fa-file-text"},
+  {"label": "Job Cards", "link_to": "Laundry Job Card", "type": "DocType", "color": "Yellow", "icon": "fa fa-tasks"},
+  {"label": "Customers", "link_to": "Laundry Customer", "type": "DocType", "color": "Green", "icon": "fa fa-user"},
+  {"label": "Machines", "link_to": "Laundry Machine", "type": "DocType", "color": "Gray", "icon": "fa fa-cogs"},
+  {"label": "Promo Campaigns", "link_to": "Promo Campaign", "type": "DocType", "color": "Purple", "icon": "fa fa-tag"},
+  {"label": "Settings", "link_to": "Spinly Settings", "type": "DocType", "color": "Gray", "icon": "fa fa-gear"}
+ ],
+ "title": "Spinly"
+}

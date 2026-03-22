@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series", "laundry_order", "customer", "service",
+  "col_break",
+  "assigned_machine", "operator", "workflow_state", "lot_number",
+  "customer_tier_badge",
+  "section_timing",
+  "start_time", "end_time", "total_weight_kg",
+  "section_notes",
+  "special_instructions", "notes"
+ ],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series", "options": "JC-.YYYY.-.#####", "default": "JC-.YYYY.-.#####"},
+  {"fieldname": "laundry_order", "fieldtype": "Link", "label": "Laundry Order", "options": "Laundry Order", "reqd": 1, "in_list_view": 1},
+  {"fieldname": "customer", "fieldtype": "Link", "label": "Customer", "options": "Laundry Customer", "fetch_from": "laundry_order.customer", "read_only": 1, "in_list_view": 1},
+  {"fieldname": "service", "fieldtype": "Link", "label": "Service", "options": "Laundry Service", "fetch_from": "laundry_order.service", "read_only": 1, "in_list_view": 1},
+  {"fieldname": "col_break", "fieldtype": "Column Break"},
+  {"fieldname": "assigned_machine", "fieldtype": "Link", "label": "Machine", "options": "Laundry Machine", "in_list_view": 1},
+  {"fieldname": "operator", "fieldtype": "Link", "label": "Operator", "options": "User"},
+  {"fieldname": "workflow_state", "fieldtype": "Data", "label": "Workflow State", "read_only": 1, "in_list_view": 1, "in_standard_filter": 1},
+  {"fieldname": "lot_number", "fieldtype": "Data", "label": "Lot Number", "fetch_from": "laundry_order.lot_number", "read_only": 1},
+  {"fieldname": "customer_tier_badge", "fieldtype": "Data", "label": "Tier Badge", "read_only": 1, "in_list_view": 1, "description": "Bronze/Silver/Gold/Diamond — set at creation from Loyalty Account"},
+  {"fieldname": "section_timing", "fieldtype": "Section Break", "label": "Timing"},
+  {"fieldname": "start_time", "fieldtype": "Datetime", "label": "Start Time"},
+  {"fieldname": "end_time", "fieldtype": "Datetime", "label": "End Time"},
+  {"fieldname": "total_weight_kg", "fieldtype": "Float", "label": "Total Weight (kg)", "fetch_from": "laundry_order.total_weight_kg", "read_only": 1},
+  {"fieldname": "section_notes", "fieldtype": "Section Break", "label": "Notes"},
+  {"fieldname": "special_instructions", "fieldtype": "Small Text", "label": "Special Instructions", "fetch_from": "laundry_order.special_instructions", "read_only": 1},
+  {"fieldname": "notes", "fieldtype": "Small Text", "label": "Staff Notes"}
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Spinly",
+ "name": "Laundry Job Card",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {"role": "Laundry Staff", "read": 1, "write": 1, "create": 1, "submit": 1},
+  {"role": "Laundry Manager", "read": 1, "write": 1, "create": 1, "submit": 1, "cancel": 1, "amend": 1},
+  {"role": "System Manager", "read": 1, "write": 1, "create": 1, "submit": 1, "cancel": 1, "amend": 1, "delete": 1}
+ ],
+ "search_fields": "laundry_order,workflow_state",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

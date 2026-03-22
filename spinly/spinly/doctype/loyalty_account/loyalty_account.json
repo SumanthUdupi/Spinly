@@ -1,0 +1,48 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series", "customer", "tier", "is_active",
+  "col_break",
+  "current_balance", "total_points_earned", "total_points_redeemed", "tier_updated_on",
+  "section_activity",
+  "order_count", "last_order_date", "previous_order_date",
+  "col_break_streak",
+  "current_streak_weeks"
+ ],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series", "options": "LA-.#####", "default": "LA-.#####"},
+  {"fieldname": "customer", "fieldtype": "Link", "label": "Customer", "options": "Laundry Customer", "reqd": 1, "unique": 1, "in_list_view": 1, "in_global_search": 1},
+  {"fieldname": "tier", "fieldtype": "Select", "label": "Tier", "options": "Bronze\nSilver\nGold\nDiamond", "default": "Bronze", "in_list_view": 1, "in_standard_filter": 1},
+  {"fieldname": "is_active", "fieldtype": "Check", "label": "Is Active", "default": "1", "in_list_view": 1},
+  {"fieldname": "col_break", "fieldtype": "Column Break"},
+  {"fieldname": "current_balance", "fieldtype": "Int", "label": "Current Balance", "default": "0", "read_only": 1, "in_list_view": 1},
+  {"fieldname": "total_points_earned", "fieldtype": "Int", "label": "Total Earned", "default": "0"},
+  {"fieldname": "total_points_redeemed", "fieldtype": "Int", "label": "Total Redeemed", "default": "0"},
+  {"fieldname": "tier_updated_on", "fieldtype": "Date", "label": "Tier Updated On"},
+  {"fieldname": "section_activity", "fieldtype": "Section Break", "label": "Activity"},
+  {"fieldname": "order_count", "fieldtype": "Int", "label": "Total Orders", "default": "0", "read_only": 1, "description": "Total submitted orders — used for scratch card frequency check"},
+  {"fieldname": "last_order_date", "fieldtype": "Date", "label": "Last Order Date", "read_only": 1},
+  {"fieldname": "previous_order_date", "fieldtype": "Date", "label": "Previous Order Date", "read_only": 1, "description": "Date before last_order_date — used for streak gap calculation"},
+  {"fieldname": "col_break_streak", "fieldtype": "Column Break"},
+  {"fieldname": "current_streak_weeks", "fieldtype": "Int", "label": "Current Streak (weeks)", "default": "0", "read_only": 1}
+ ],
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Spinly",
+ "name": "Loyalty Account",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {"role": "Laundry Staff", "read": 1},
+  {"role": "Laundry Manager", "read": 1, "write": 1},
+  {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1}
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

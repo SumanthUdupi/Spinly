@@ -1,0 +1,31 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["naming_series", "service_name", "service_type", "base_price_per_kg", "processing_minutes"],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series", "options": "SRV-.###", "default": "SRV-.###"},
+  {"fieldname": "service_name", "fieldtype": "Data", "label": "Service Name", "reqd": 1, "in_list_view": 1, "in_global_search": 1},
+  {"fieldname": "service_type", "fieldtype": "Select", "label": "Service Type", "reqd": 1, "in_list_view": 1,
+   "options": "Wash & Fold\nWash & Iron\nDry Clean"},
+  {"fieldname": "base_price_per_kg", "fieldtype": "Currency", "label": "Price per kg", "reqd": 1, "in_list_view": 1, "options": "INR"},
+  {"fieldname": "processing_minutes", "fieldtype": "Int", "label": "Processing Time (minutes)", "reqd": 1, "in_list_view": 1}
+ ],
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Spinly",
+ "name": "Laundry Service",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {"role": "Laundry Manager", "read": 1},
+  {"role": "Laundry Staff", "read": 1},
+  {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1}
+ ],
+ "sort_field": "service_name",
+ "sort_order": "ASC",
+ "states": []
+}

@@ -1,0 +1,34 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["naming_series", "item_name", "category", "is_active", "col_break", "current_stock", "reorder_threshold", "reorder_quantity", "consumption_per_kg"],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series", "options": "CONS-.###", "default": "CONS-.###"},
+  {"fieldname": "item_name", "fieldtype": "Data", "label": "Item Name", "reqd": 1, "in_list_view": 1, "in_global_search": 1},
+  {"fieldname": "category", "fieldtype": "Link", "label": "Category", "options": "Consumable Category", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1},
+  {"fieldname": "is_active", "fieldtype": "Check", "label": "Is Active", "default": "1", "in_list_view": 1},
+  {"fieldname": "col_break", "fieldtype": "Column Break"},
+  {"fieldname": "current_stock", "fieldtype": "Float", "label": "Current Stock", "default": "0", "in_list_view": 1},
+  {"fieldname": "reorder_threshold", "fieldtype": "Float", "label": "Reorder Threshold", "reqd": 1},
+  {"fieldname": "reorder_quantity", "fieldtype": "Float", "label": "Suggested Reorder Qty"},
+  {"fieldname": "consumption_per_kg", "fieldtype": "Float", "label": "Consumption per kg", "reqd": 1,
+   "description": "Amount consumed per kg of laundry processed"}
+ ],
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Spinly",
+ "name": "Laundry Consumable",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {"role": "Laundry Manager", "read": 1, "write": 1},
+  {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1}
+ ],
+ "sort_field": "item_name",
+ "sort_order": "ASC",
+ "states": []
+}

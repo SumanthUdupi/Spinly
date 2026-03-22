@@ -1,0 +1,30 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["naming_series", "method_name", "show_upi_qr", "sort_order", "is_active"],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series", "options": "PMETH-.##", "default": "PMETH-.##"},
+  {"fieldname": "method_name", "fieldtype": "Data", "label": "Method Name", "reqd": 1, "in_list_view": 1, "in_global_search": 1},
+  {"fieldname": "show_upi_qr", "fieldtype": "Check", "label": "Show UPI QR", "default": "0", "in_list_view": 1},
+  {"fieldname": "sort_order", "fieldtype": "Int", "label": "Sort Order", "default": "1"},
+  {"fieldname": "is_active", "fieldtype": "Check", "label": "Is Active", "default": "1", "in_list_view": 1}
+ ],
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Spinly",
+ "name": "Payment Method",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {"role": "Laundry Manager", "read": 1, "write": 1, "create": 1, "delete": 0},
+  {"role": "Laundry Staff", "read": 1},
+  {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1}
+ ],
+ "sort_field": "sort_order",
+ "sort_order": "ASC",
+ "states": []
+}

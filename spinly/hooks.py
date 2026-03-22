@@ -5,251 +5,71 @@ app_description = "Spinly Laundry Management System"
 app_email = "dev@spinly.com"
 app_license = "mit"
 
-# Apps
-# ------------------
+# Fixtures — exported via bench export-fixtures / loaded via bench migrate
+fixtures = [
+    "Consumable Category",
+    "Garment Type",
+    "Alert Tag",
+    "Payment Method",
+    "Laundry Service",
+    "WhatsApp Message Template",
+    "Laundry Machine",
+    "Laundry Consumable",
+    "Spinly Settings",
+    {"dt": "Workflow State", "filters": [["workflow_state_name", "in", [
+        "Sorting", "Washing", "Drying", "Ironing", "Ready", "Delivered"
+    ]]]},
+    {"dt": "Workflow Action Master", "filters": [["workflow_action_name", "in", [
+        "Start Washing", "Start Drying", "Start Ironing", "Mark Ready", "Mark Delivered"
+    ]]]},
+    {"dt": "Workflow", "filters": [["document_type", "=", "Laundry Job Card"]]},
+    {"dt": "Print Format", "filters": [["name", "in", ["Job Tag Thermal", "Spinly Customer Invoice"]]]},
+    "Promo Campaign",
+    "Laundry Customer",
+    "Loyalty Account",
+]
 
-# required_apps = []
-
-# Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "spinly",
-# 		"logo": "/assets/spinly/logo.png",
-# 		"title": "Spinly",
-# 		"route": "/spinly",
-# 		"has_permission": "spinly.api.permission.has_app_permission"
-# 	}
-# ]
-
-# Includes in <head>
-# ------------------
-
-# include js, css files in header of desk.html
-# app_include_css = "/assets/spinly/css/spinly.css"
-# app_include_js = "/assets/spinly/js/spinly.js"
-
-# include js, css files in header of web template
-# web_include_css = "/assets/spinly/css/spinly.css"
-# web_include_js = "/assets/spinly/js/spinly.js"
-
-# include custom scss in every website theme (without file extension ".scss")
-# website_theme_scss = "spinly/public/scss/website"
-
-# include js, css files in header of web form
-# webform_include_js = {"doctype": "public/js/doctype.js"}
-# webform_include_css = {"doctype": "public/css/doctype.css"}
-
-# include js in page
-# page_js = {"page" : "public/js/file.js"}
-
-# include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
-# doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
-# doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
-
-# Svg Icons
-# ------------------
-# include app icons in desk
-# app_include_icons = "spinly/public/icons.svg"
-
-# Home Pages
-# ----------
-
-# application home page (will override Website Settings)
-# home_page = "login"
-
-# website user home page (by Role)
-# role_home_page = {
-# 	"Role": "home_page"
-# }
-
-# Generators
-# ----------
-
-# automatically create page for each record of this doctype
-# website_generators = ["Web Page"]
-
-# automatically load and sync documents of this doctype from downstream apps
-# importable_doctypes = [doctype_1]
-
-# Jinja
-# ----------
-
-# add methods and filters to jinja environment
-# jinja = {
-# 	"methods": "spinly.utils.jinja_methods",
-# 	"filters": "spinly.utils.jinja_filters"
-# }
-
-# Installation
-# ------------
-
-# before_install = "spinly.install.before_install"
-# after_install = "spinly.install.after_install"
-
-# Uninstallation
-# ------------
-
-# before_uninstall = "spinly.uninstall.before_uninstall"
-# after_uninstall = "spinly.uninstall.after_uninstall"
-
-# Integration Setup
-# ------------------
-# To set up dependencies/integrations with other apps
-# Name of the app being installed is passed as an argument
-
-# before_app_install = "spinly.utils.before_app_install"
-# after_app_install = "spinly.utils.after_app_install"
-
-# Integration Cleanup
-# -------------------
-# To clean up dependencies/integrations with other apps
-# Name of the app being uninstalled is passed as an argument
-
-# before_app_uninstall = "spinly.utils.before_app_uninstall"
-# after_app_uninstall = "spinly.utils.after_app_uninstall"
-
-# Desk Notifications
-# ------------------
-# See frappe.core.notifications.get_notification_config
-
-# notification_config = "spinly.notifications.get_notification_config"
-
-# Permissions
-# -----------
-# Permissions evaluated in scripted ways
-
-# permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
-#
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
+# Authentication — redirect staff to POS on login
+on_login = "spinly.auth.redirect_staff_to_pos"
 
 # Document Events
-# ---------------
-# Hook on document methods and events
-
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+    "Laundry Customer": {
+        "after_insert": "spinly.logic.loyalty.ensure_loyalty_account_on_insert",
+    },
+    "Laundry Order": {
+        "before_save": "spinly.logic.order.before_save",
+        "on_submit": [
+            "spinly.logic.order.on_submit",
+            "spinly.logic.loyalty.credit_order_points_on_submit",
+            "spinly.integrations.whatsapp_handler.send_order_confirmation",
+        ],
+        "on_cancel": "spinly.logic.order.on_cancel",
+        "on_update": "spinly.integrations.whatsapp_handler.on_payment_confirmed",
+    },
+    "Laundry Job Card": {
+        "on_submit": "spinly.logic.job_card.on_submit",
+        "on_workflow_action": "spinly.logic.job_card.on_workflow_action",
+    },
+    "Inventory Restock Log": {
+        "after_insert": "spinly.logic.inventory.on_restock",
+    },
+}
 
 # Scheduled Tasks
-# ---------------
+scheduler_events = {
+    "daily": [
+        "spinly.logic.loyalty.expire_points",
+        "spinly.logic.loyalty.recalculate_tiers",
+        "spinly.logic.inventory.check_low_stock",
+        "spinly.integrations.whatsapp_handler.send_pickup_reminders",
+        "spinly.integrations.whatsapp_handler.send_win_back_messages",
+    ],
+    "hourly": [
+        "spinly.logic.machine.clear_completed_timers",
+    ],
+}
 
-# scheduler_events = {
-# 	"all": [
-# 		"spinly.tasks.all"
-# 	],
-# 	"daily": [
-# 		"spinly.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"spinly.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"spinly.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"spinly.tasks.monthly"
-# 	],
-# }
-
-# Testing
-# -------
-
-# before_tests = "spinly.install.before_tests"
-
-# Extend DocType Class
-# ------------------------------
-#
-# Specify custom mixins to extend the standard doctype controller.
-# extend_doctype_class = {
-# 	"Task": "spinly.custom.task.CustomTaskMixin"
-# }
-
-# Overriding Methods
-# ------------------------------
-#
-# override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "spinly.event.get_events"
-# }
-#
-# each overriding function accepts a `data` argument;
-# generated from the base implementation of the doctype dashboard,
-# along with any modifications made in other Frappe apps
-# override_doctype_dashboards = {
-# 	"Task": "spinly.task.get_dashboard_data"
-# }
-
-# exempt linked doctypes from being automatically cancelled
-#
-# auto_cancel_exempted_doctypes = ["Auto Repeat"]
-
-# Ignore links to specified DocTypes when deleting documents
-# -----------------------------------------------------------
-
-# ignore_links_on_delete = ["Communication", "ToDo"]
-
-# Request Events
-# ----------------
-# before_request = ["spinly.utils.before_request"]
-# after_request = ["spinly.utils.after_request"]
-
-# Job Events
-# ----------
-# before_job = ["spinly.utils.before_job"]
-# after_job = ["spinly.utils.after_job"]
-
-# User Data Protection
-# --------------------
-
-# user_data_fields = [
-# 	{
-# 		"doctype": "{doctype_1}",
-# 		"filter_by": "{filter_by}",
-# 		"redact_fields": ["{field_1}", "{field_2}"],
-# 		"partial": 1,
-# 	},
-# 	{
-# 		"doctype": "{doctype_2}",
-# 		"filter_by": "{filter_by}",
-# 		"partial": 1,
-# 	},
-# 	{
-# 		"doctype": "{doctype_3}",
-# 		"strict": False,
-# 	},
-# 	{
-# 		"doctype": "{doctype_4}"
-# 	}
-# ]
-
-# Authentication and authorization
-# --------------------------------
-
-# auth_hooks = [
-# 	"spinly.auth.validate"
-# ]
-
-# Automatically update python controller files with type annotations for this app.
+# Export type annotations
 export_python_type_annotations = True
-
-# Require all whitelisted methods to have type annotations
 require_type_annotated_api_methods = True
-
-# default_log_clearing_doctypes = {
-# 	"Logging DocType Name": 30  # days to retain logs
-# }
-
-# Translation
-# ------------
-# List of apps whose translatable strings should be excluded from this app's translations.
-# ignore_translatable_strings_from = []
-

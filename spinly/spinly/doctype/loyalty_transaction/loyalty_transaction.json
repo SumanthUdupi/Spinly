@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series", "customer", "transaction_type", "points",
+  "col_break",
+  "reference_doctype", "reference_name", "expiry_date", "has_been_expired",
+  "section_notes",
+  "notes"
+ ],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series", "options": "LT-.YYYY.-.#####", "default": "LT-.YYYY.-.#####"},
+  {"fieldname": "customer", "fieldtype": "Link", "label": "Customer", "options": "Laundry Customer", "reqd": 1, "in_list_view": 1},
+  {"fieldname": "transaction_type", "fieldtype": "Select", "label": "Type", "options": "Credit\nDebit\nExpire", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1},
+  {"fieldname": "points", "fieldtype": "Int", "label": "Points", "reqd": 1, "in_list_view": 1},
+  {"fieldname": "col_break", "fieldtype": "Column Break"},
+  {"fieldname": "reference_doctype", "fieldtype": "Link", "label": "Reference DocType", "options": "DocType"},
+  {"fieldname": "reference_name", "fieldtype": "Dynamic Link", "label": "Reference", "options": "reference_doctype"},
+  {"fieldname": "expiry_date", "fieldtype": "Date", "label": "Expiry Date", "description": "Points expire after this date"},
+  {"fieldname": "has_been_expired", "fieldtype": "Check", "label": "Has Been Expired", "default": "0"},
+  {"fieldname": "section_notes", "fieldtype": "Section Break", "label": "Notes"},
+  {"fieldname": "notes", "fieldtype": "Small Text", "label": "Notes"}
+ ],
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Spinly",
+ "name": "Loyalty Transaction",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {"role": "Laundry Staff", "read": 1},
+  {"role": "Laundry Manager", "read": 1, "write": 1, "create": 1},
+  {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1}
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

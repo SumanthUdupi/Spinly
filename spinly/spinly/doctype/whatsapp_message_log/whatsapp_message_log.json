@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series", "customer", "phone_number", "template",
+  "col_break",
+  "message_type", "status", "sent_on",
+  "section_body",
+  "message_body",
+  "section_ref",
+  "reference_doctype", "reference_name",
+  "section_error",
+  "error_message"
+ ],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series", "options": "WLOG-.YYYY.-.#####", "default": "WLOG-.YYYY.-.#####"},
+  {"fieldname": "customer", "fieldtype": "Link", "label": "Customer", "options": "Laundry Customer", "in_list_view": 1},
+  {"fieldname": "phone_number", "fieldtype": "Data", "label": "Phone", "in_list_view": 1},
+  {"fieldname": "template", "fieldtype": "Link", "label": "Template", "options": "WhatsApp Message Template"},
+  {"fieldname": "col_break", "fieldtype": "Column Break"},
+  {"fieldname": "message_type", "fieldtype": "Select", "label": "Message Type", "options": "Order Confirmation\nPickup Reminder\nPayment Thanks\nWin-Back\nScratch Card\nVIP Thank You", "in_list_view": 1, "in_standard_filter": 1},
+  {"fieldname": "status", "fieldtype": "Select", "label": "Status", "options": "Queued\nSent\nDelivered\nFailed", "default": "Queued", "in_list_view": 1, "in_standard_filter": 1},
+  {"fieldname": "sent_on", "fieldtype": "Datetime", "label": "Sent On", "in_list_view": 1},
+  {"fieldname": "section_body", "fieldtype": "Section Break", "label": "Message"},
+  {"fieldname": "message_body", "fieldtype": "Long Text", "label": "Message Body", "read_only": 1},
+  {"fieldname": "section_ref", "fieldtype": "Section Break", "label": "Reference"},
+  {"fieldname": "reference_doctype", "fieldtype": "Link", "label": "Reference DocType", "options": "DocType"},
+  {"fieldname": "reference_name", "fieldtype": "Dynamic Link", "label": "Reference", "options": "reference_doctype"},
+  {"fieldname": "section_error", "fieldtype": "Section Break", "label": "Error"},
+  {"fieldname": "error_message", "fieldtype": "Small Text", "label": "Error Message"}
+ ],
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Spinly",
+ "name": "WhatsApp Message Log",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {"role": "Laundry Manager", "read": 1},
+  {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1}
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

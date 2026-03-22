@@ -1,0 +1,15 @@
+{
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "Page",
+ "module": "Spinly",
+ "name": "spinly-pos",
+ "page_name": "spinly-pos",
+ "standard": "Yes",
+ "system_page": 0,
+ "title": "Spinly POS",
+ "roles": [
+  {"role": "Laundry Staff"},
+  {"role": "Laundry Manager"},
+  {"role": "System Manager"}
+ ]
+}

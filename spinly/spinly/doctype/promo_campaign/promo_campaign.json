@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series", "campaign_name", "campaign_type", "is_active", "priority",
+  "col_break",
+  "discount_pct", "min_weight_kg", "applicable_service",
+  "col_break_2",
+  "max_uses", "usage_count", "referral_bonus_points",
+  "section_dates",
+  "start_date", "end_date"
+ ],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series", "options": "PROMO-.###", "default": "PROMO-.###"},
+  {"fieldname": "campaign_name", "fieldtype": "Data", "label": "Campaign Name", "reqd": 1, "in_list_view": 1, "in_global_search": 1},
+  {"fieldname": "campaign_type", "fieldtype": "Select", "label": "Type",
+   "options": "Flash Sale\nWeight Milestone\nBirthday\nWin-Back\nReferral",
+   "reqd": 1, "in_list_view": 1, "in_standard_filter": 1},
+  {"fieldname": "is_active", "fieldtype": "Check", "label": "Is Active", "default": "1", "in_list_view": 1},
+  {"fieldname": "priority", "fieldtype": "Int", "label": "Priority", "default": "0", "description": "Higher = wins when multiple campaigns apply"},
+  {"fieldname": "col_break", "fieldtype": "Column Break"},
+  {"fieldname": "discount_pct", "fieldtype": "Float", "label": "Discount (%)", "description": "Percentage off subtotal"},
+  {"fieldname": "min_weight_kg", "fieldtype": "Float", "label": "Min Weight (kg)", "description": "Minimum order weight to qualify (Weight Milestone)"},
+  {"fieldname": "applicable_service", "fieldtype": "Link", "label": "Applicable Service", "options": "Laundry Service", "description": "Leave blank to apply to all services"},
+  {"fieldname": "col_break_2", "fieldtype": "Column Break"},
+  {"fieldname": "max_uses", "fieldtype": "Int", "label": "Max Uses", "description": "0 = unlimited"},
+  {"fieldname": "usage_count", "fieldtype": "Int", "label": "Usage Count", "default": "0", "read_only": 1},
+  {"fieldname": "referral_bonus_points", "fieldtype": "Int", "label": "Referral Bonus Pts", "default": "50", "description": "Points awarded to both referrer and referee (Referral type)"},
+  {"fieldname": "section_dates", "fieldtype": "Section Break", "label": "Validity"},
+  {"fieldname": "start_date", "fieldtype": "Date", "label": "Start Date", "reqd": 1},
+  {"fieldname": "end_date", "fieldtype": "Date", "label": "End Date", "reqd": 1}
+ ],
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Spinly",
+ "name": "Promo Campaign",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {"role": "Laundry Manager", "read": 1, "write": 1, "create": 1},
+  {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1}
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

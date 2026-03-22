@@ -1,0 +1,6 @@
+[
+ {"doctype": "Payment Method", "name": "PMETH-01", "method_name": "Cash", "show_upi_qr": 0, "sort_order": 1, "is_active": 1},
+ {"doctype": "Payment Method", "name": "PMETH-02", "method_name": "UPI", "show_upi_qr": 1, "sort_order": 2, "is_active": 1},
+ {"doctype": "Payment Method", "name": "PMETH-03", "method_name": "Card", "show_upi_qr": 0, "sort_order": 3, "is_active": 1},
+ {"doctype": "Payment Method", "name": "PMETH-04", "method_name": "Pay Later", "show_upi_qr": 0, "sort_order": 4, "is_active": 1}
+]

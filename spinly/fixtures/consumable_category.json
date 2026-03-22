@@ -1,0 +1,9 @@
+[
+ {"doctype": "Consumable Category", "name": "CCAT-001", "category_name": "Detergent", "unit": "ml", "is_active": 1},
+ {"doctype": "Consumable Category", "name": "CCAT-002", "category_name": "Fabric Softener", "unit": "ml", "is_active": 1},
+ {"doctype": "Consumable Category", "name": "CCAT-003", "category_name": "Stain Remover", "unit": "ml", "is_active": 1},
+ {"doctype": "Consumable Category", "name": "CCAT-004", "category_name": "Dry Clean Solvent", "unit": "ml", "is_active": 1},
+ {"doctype": "Consumable Category", "name": "CCAT-005", "category_name": "Packaging Bags", "unit": "pcs", "is_active": 1},
+ {"doctype": "Consumable Category", "name": "CCAT-006", "category_name": "Hangers", "unit": "pcs", "is_active": 1},
+ {"doctype": "Consumable Category", "name": "CCAT-007", "category_name": "Ironing Starch", "unit": "gm", "is_active": 1}
+]

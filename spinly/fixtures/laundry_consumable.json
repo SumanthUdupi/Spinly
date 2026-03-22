@@ -1,0 +1,68 @@
+[
+ {
+  "doctype": "Laundry Consumable",
+  "name": "CONS-001",
+  "item_name": "Liquid Detergent",
+  "category": "CCAT-001",
+  "is_active": 1,
+  "current_stock": 50000.0,
+  "reorder_threshold": 5000.0,
+  "reorder_quantity": 20000.0,
+  "consumption_per_kg": 30.0
+ },
+ {
+  "doctype": "Laundry Consumable",
+  "name": "CONS-002",
+  "item_name": "Fabric Softener",
+  "category": "CCAT-002",
+  "is_active": 1,
+  "current_stock": 20000.0,
+  "reorder_threshold": 2000.0,
+  "reorder_quantity": 10000.0,
+  "consumption_per_kg": 10.0
+ },
+ {
+  "doctype": "Laundry Consumable",
+  "name": "CONS-003",
+  "item_name": "Stain Remover Spray",
+  "category": "CCAT-003",
+  "is_active": 1,
+  "current_stock": 5000.0,
+  "reorder_threshold": 500.0,
+  "reorder_quantity": 3000.0,
+  "consumption_per_kg": 5.0
+ },
+ {
+  "doctype": "Laundry Consumable",
+  "name": "CONS-004",
+  "item_name": "Dry Clean Solvent",
+  "category": "CCAT-004",
+  "is_active": 1,
+  "current_stock": 15000.0,
+  "reorder_threshold": 2000.0,
+  "reorder_quantity": 8000.0,
+  "consumption_per_kg": 50.0
+ },
+ {
+  "doctype": "Laundry Consumable",
+  "name": "CONS-005",
+  "item_name": "Packaging Bags",
+  "category": "CCAT-005",
+  "is_active": 1,
+  "current_stock": 500.0,
+  "reorder_threshold": 50.0,
+  "reorder_quantity": 200.0,
+  "consumption_per_kg": 0.2
+ },
+ {
+  "doctype": "Laundry Consumable",
+  "name": "CONS-006",
+  "item_name": "Ironing Starch",
+  "category": "CCAT-007",
+  "is_active": 1,
+  "current_stock": 2000.0,
+  "reorder_threshold": 200.0,
+  "reorder_quantity": 1000.0,
+  "consumption_per_kg": 3.0
+ }
+]

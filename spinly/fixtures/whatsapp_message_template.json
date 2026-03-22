@@ -1,0 +1,62 @@
+[
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-001",
+  "template_name": "Order Confirmation - English",
+  "message_type": "Order Confirmation",
+  "language": "en",
+  "is_active": 1,
+  "template_body": "Hello! Your laundry order {{order}} has been received. Lot number: {{lot_number}}. Expected ready by {{expected_ready_date}}. Thank you for choosing Spinly!",
+  "placeholder_description": "{{order}} = order name, {{lot_number}} = lot number, {{expected_ready_date}} = ETA"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-002",
+  "template_name": "Pickup Reminder - English",
+  "message_type": "Pickup Reminder",
+  "language": "en",
+  "is_active": 1,
+  "template_body": "Hi! Your laundry order {{order}} is READY for pickup at Spinly. Please collect at your earliest convenience.",
+  "placeholder_description": "{{order}} = order name"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-003",
+  "template_name": "Payment Thanks - English",
+  "message_type": "Payment Thanks",
+  "language": "en",
+  "is_active": 1,
+  "template_body": "Thank you for your payment of Rs.{{grand_total}} for order {{order}}. We appreciate your business! See you next time.",
+  "placeholder_description": "{{order}} = order name, {{grand_total}} = amount"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-004",
+  "template_name": "Win-Back - English",
+  "message_type": "Win-Back",
+  "language": "en",
+  "is_active": 1,
+  "template_body": "We miss you at Spinly! It's been a while since your last visit. Come back and enjoy our fresh laundry service. We're here for you!",
+  "placeholder_description": "No placeholders"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-005",
+  "template_name": "Scratch Card - English",
+  "message_type": "Scratch Card",
+  "language": "en",
+  "is_active": 1,
+  "template_body": "Congratulations! You've earned a Spinly Scratch Card for order {{order}}! Visit the store to reveal your prize. Good luck!",
+  "placeholder_description": "{{order}} = order name"
+ },
+ {
+  "doctype": "WhatsApp Message Template",
+  "name": "WTPL-006",
+  "template_name": "VIP Thank You - English",
+  "message_type": "VIP Thank You",
+  "language": "en",
+  "is_active": 1,
+  "template_body": "Thank you, {{customer_name}}! As a valued {{tier}} member, your clothes receive our premium care. See you soon at Spinly!",
+  "placeholder_description": "{{customer_name}} = customer name, {{tier}} = loyalty tier"
+ }
+]
