@@ -115,6 +115,11 @@ sleep 3   # Give bench a moment to initialise before clearing
 (cd "$BENCH_DIR" && bench --site "$SITE_NAME" clear-cache 2>/dev/null) || true
 echo "      Done."
 
+# ------------------------------------------------------------------------------
+# 5. SSH server — lets testers port-forward to bench without any external service
+# ------------------------------------------------------------------------------
+echo "[5/5] SSH tunnel server..."
+bash /workspaces/Frappe/scripts/setup-ssh.sh
 echo ""
 echo "=============================================="
 echo "  All services running."
@@ -122,7 +127,6 @@ echo ""
 echo "  Web UI  : http://localhost:8000"
 echo "  User    : Administrator / admin"
 echo ""
-echo "  Tail logs  : tail -f $LOG_FILE"
-echo "  Public URL : bash /workspaces/Frappe/scripts/tunnel.sh"
+echo "  Tail logs : tail -f $LOG_FILE"
 echo "=============================================="
 echo ""
